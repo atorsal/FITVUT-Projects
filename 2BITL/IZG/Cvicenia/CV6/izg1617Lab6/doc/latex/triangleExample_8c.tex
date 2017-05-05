@@ -1,0 +1,262 @@
+\hypertarget{triangleExample_8c}{\section{examples/triangle\-Example.c File Reference}
+\label{triangleExample_8c}\index{examples/triangle\-Example.\-c@{examples/triangle\-Example.\-c}}
+}
+
+
+This file contains implementation of simple triangle example.  
+
+
+{\ttfamily \#include $<$assert.\-h$>$}\\*
+{\ttfamily \#include $<$math.\-h$>$}\\*
+{\ttfamily \#include \char`\"{}examples/triangle\-Example.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}student/linear\-Algebra.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}student/camera.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}student/mouse\-Camera.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}student/program.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}opengl/opengl.\-h\char`\"{}}\\*
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structTriangleExampleVariables}{Triangle\-Example\-Variables}
+\begin{DoxyCompactList}\small\item\em \mbox{[}E\-X\-T\-E\-R\-N\-S\mbox{]} \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{triangleExample_8c_a73184b4ab6bb513ad9a9a4c36e92646b}{triangle\-Example\-\_\-on\-Init} (int32\-\_\-t width, int32\-\_\-t height)
+\begin{DoxyCompactList}\small\item\em \mbox{[}F\-R\-A\-G\-M\-E\-N\-T\-S\-H\-A\-D\-E\-R\mbox{]} \end{DoxyCompactList}\item 
+void \hyperlink{triangleExample_8c_a35b10f59fe16423447777ba6bbba3b66}{triangle\-Example\-\_\-on\-Exit} ()
+\begin{DoxyCompactList}\small\item\em This function is called at end of application. \end{DoxyCompactList}\item 
+void \hyperlink{triangleExample_8c_a3c6a1869a7e6614856badd527a9c332f}{triangle\-Example\-\_\-on\-Draw} ()
+\begin{DoxyCompactList}\small\item\em This function is called every frame and is responsible for drawing. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{structMat4}{Mat4} \hyperlink{triangleExample_8c_a1f344d924f733a22d7659db612a0efe8}{projection\-Matrix}
+\begin{DoxyCompactList}\small\item\em This variable contains projection matrix of orbit camera. \end{DoxyCompactList}\item 
+\hyperlink{structMat4}{Mat4} \hyperlink{triangleExample_8c_ae64ebe4c77936fc93d161b97bd8e96df}{view\-Matrix}
+\begin{DoxyCompactList}\small\item\em This variable contains view matrix. \end{DoxyCompactList}\item 
+struct \hyperlink{structTriangleExampleVariables}{Triangle\-Example\-Variables} \hyperlink{triangleExample_8c_af82b723635ac0c90962571915a1b1163}{triangle\-Example}
+\item 
+char const $\ast$ \hyperlink{triangleExample_8c_a90e98a213f90e03bd807c2f64031a8e2}{triangle\-Example\-Vertex\-Shader\-Source}
+\begin{DoxyCompactList}\small\item\em \mbox{[}G\-L\-O\-B\-A\-L\-S\mbox{]} \end{DoxyCompactList}\item 
+char const $\ast$ \hyperlink{triangleExample_8c_a48b175665aab439caedaa0440a85462e}{triangle\-Example\-Fragment\-Shader\-Source}
+\begin{DoxyCompactList}\small\item\em \mbox{[}V\-E\-R\-T\-E\-X\-S\-H\-A\-D\-E\-R\mbox{]} \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This file contains implementation of simple triangle example. \begin{DoxyAuthor}{Author}
+Tomáš Milet, \href{mailto:imilet@fit.vutbr.cz}{\tt imilet@fit.\-vutbr.\-cz} 
+\end{DoxyAuthor}
+
+
+\subsection{Function Documentation}
+\hypertarget{triangleExample_8c_a3c6a1869a7e6614856badd527a9c332f}{\index{triangle\-Example.\-c@{triangle\-Example.\-c}!triangle\-Example\-\_\-on\-Draw@{triangle\-Example\-\_\-on\-Draw}}
+\index{triangle\-Example\-\_\-on\-Draw@{triangle\-Example\-\_\-on\-Draw}!triangleExample.c@{triangle\-Example.\-c}}
+\subsubsection[{triangle\-Example\-\_\-on\-Draw}]{\setlength{\rightskip}{0pt plus 5cm}void triangle\-Example\-\_\-on\-Draw (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{triangleExample_8c_a3c6a1869a7e6614856badd527a9c332f}
+
+
+This function is called every frame and is responsible for drawing. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em surface} & S\-D\-L surface \\
+\hline
+\end{DoxyParams}
+\mbox{[}C\-L\-E\-A\-R\mbox{]}
+
+\mbox{[}C\-L\-E\-A\-R\mbox{]}
+
+\mbox{[}U\-S\-E\-P\-R\-O\-G\-R\-A\-M\mbox{]}
+
+\mbox{[}U\-S\-E\-P\-R\-O\-G\-R\-A\-M\mbox{]}
+
+\mbox{[}B\-I\-N\-D\-V\-A\-O\mbox{]}
+
+\mbox{[}B\-I\-N\-D\-V\-A\-O\mbox{]}
+
+\mbox{[}U\-P\-L\-O\-A\-D\-M\-A\-T\-R\-I\-C\-E\-S\mbox{]}
+
+\mbox{[}U\-P\-L\-O\-A\-D\-M\-A\-T\-R\-I\-C\-E\-S\mbox{]}
+
+\mbox{[}D\-R\-A\-W\mbox{]}
+
+\mbox{[}D\-R\-A\-W\mbox{]}
+
+\mbox{[}U\-N\-B\-I\-N\-D\-V\-A\-O\mbox{]}
+
+\mbox{[}U\-N\-B\-I\-N\-D\-V\-A\-O\mbox{]} \hypertarget{triangleExample_8c_a35b10f59fe16423447777ba6bbba3b66}{\index{triangle\-Example.\-c@{triangle\-Example.\-c}!triangle\-Example\-\_\-on\-Exit@{triangle\-Example\-\_\-on\-Exit}}
+\index{triangle\-Example\-\_\-on\-Exit@{triangle\-Example\-\_\-on\-Exit}!triangleExample.c@{triangle\-Example.\-c}}
+\subsubsection[{triangle\-Example\-\_\-on\-Exit}]{\setlength{\rightskip}{0pt plus 5cm}void triangle\-Example\-\_\-on\-Exit (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{triangleExample_8c_a35b10f59fe16423447777ba6bbba3b66}
+
+
+This function is called at end of application. 
+
+\mbox{[}F\-R\-E\-E\mbox{]}
+
+\mbox{[}F\-R\-E\-E\mbox{]} \hypertarget{triangleExample_8c_a73184b4ab6bb513ad9a9a4c36e92646b}{\index{triangle\-Example.\-c@{triangle\-Example.\-c}!triangle\-Example\-\_\-on\-Init@{triangle\-Example\-\_\-on\-Init}}
+\index{triangle\-Example\-\_\-on\-Init@{triangle\-Example\-\_\-on\-Init}!triangleExample.c@{triangle\-Example.\-c}}
+\subsubsection[{triangle\-Example\-\_\-on\-Init}]{\setlength{\rightskip}{0pt plus 5cm}void triangle\-Example\-\_\-on\-Init (
+\begin{DoxyParamCaption}
+\item[{int32\-\_\-t}]{width, }
+\item[{int32\-\_\-t}]{height}
+\end{DoxyParamCaption}
+)}}\label{triangleExample_8c_a73184b4ab6bb513ad9a9a4c36e92646b}
+
+
+\mbox{[}F\-R\-A\-G\-M\-E\-N\-T\-S\-H\-A\-D\-E\-R\mbox{]} 
+
+This function is called at start of application. It contains initialization at C\-P\-U side. \mbox{[}I\-N\-I\-T\-I\-A\-L\-I\-Z\-A\-T\-I\-O\-N\mbox{]}
+
+\mbox{[}I\-N\-I\-T\-I\-A\-L\-I\-Z\-A\-T\-I\-O\-N\mbox{]}
+
+\mbox{[}C\-R\-E\-A\-T\-E\-S\-H\-A\-D\-E\-R\mbox{]}
+
+\mbox{[}C\-R\-E\-A\-T\-E\-S\-H\-A\-D\-E\-R\mbox{]}
+
+\mbox{[}U\-N\-I\-F\-O\-R\-M\-L\-O\-C\-A\-T\-I\-O\-N\mbox{]}
+
+\mbox{[}U\-N\-I\-F\-O\-R\-M\-L\-O\-C\-A\-T\-I\-O\-N\mbox{]}
+
+\mbox{[}V\-E\-R\-T\-E\-X\-D\-A\-T\-A\mbox{]}
+
+\mbox{[}V\-E\-R\-T\-E\-X\-D\-A\-T\-A\mbox{]}
+
+\mbox{[}G\-E\-N\-B\-U\-F\-F\-E\-R\-S\mbox{]}
+
+\mbox{[}G\-E\-N\-B\-U\-F\-F\-E\-R\-S\mbox{]}
+
+\mbox{[}B\-I\-N\-D\-B\-U\-F\-F\-E\-R\mbox{]}
+
+\mbox{[}B\-I\-N\-D\-B\-U\-F\-F\-E\-R\mbox{]}
+
+\mbox{[}B\-U\-F\-F\-E\-R\-D\-A\-T\-A\mbox{]}
+
+\mbox{[}B\-U\-F\-F\-E\-R\-D\-A\-T\-A\mbox{]}
+
+\mbox{[}E\-B\-O\mbox{]}
+
+\mbox{[}E\-B\-O\mbox{]}
+
+\mbox{[}A\-T\-T\-R\-I\-B\-L\-O\-C\-A\-T\-I\-O\-N\mbox{]}
+
+\mbox{[}A\-T\-T\-R\-I\-B\-L\-O\-C\-A\-T\-I\-O\-N\mbox{]}
+
+\mbox{[}G\-E\-N\-A\-R\-R\-A\-Y\-S\mbox{]}
+
+\mbox{[}G\-E\-N\-A\-R\-R\-A\-Y\-S\mbox{]}
+
+\mbox{[}B\-I\-N\-D\-A\-R\-R\-A\-Y\-S\mbox{]}
+
+\mbox{[}B\-I\-N\-D\-A\-R\-R\-A\-Y\-S\mbox{]}
+
+\mbox{[}B\-I\-N\-D\-E\-B\-O\mbox{]}
+
+\mbox{[}B\-I\-N\-D\-E\-B\-O\mbox{]}
+
+\mbox{[}B\-I\-N\-D\-V\-B\-O\mbox{]}
+
+\mbox{[}B\-I\-N\-D\-V\-B\-O\mbox{]}
+
+\mbox{[}A\-T\-T\-R\-I\-B\-P\-O\-I\-N\-T\-E\-R\mbox{]}
+
+\mbox{[}A\-T\-T\-R\-I\-B\-P\-O\-I\-N\-T\-E\-R\mbox{]}
+
+\mbox{[}E\-N\-A\-B\-L\-E\-A\-T\-T\-R\-I\-B\mbox{]}
+
+\mbox{[}E\-N\-A\-B\-L\-E\-A\-T\-T\-R\-I\-B\mbox{]}
+
+\mbox{[}U\-N\-B\-I\-N\-D\-A\-R\-R\-A\-Y\-S\mbox{]}
+
+\mbox{[}U\-N\-B\-I\-N\-D\-A\-R\-R\-A\-Y\-S\mbox{]} 
+
+\subsection{Variable Documentation}
+\hypertarget{triangleExample_8c_a1f344d924f733a22d7659db612a0efe8}{\index{triangle\-Example.\-c@{triangle\-Example.\-c}!projection\-Matrix@{projection\-Matrix}}
+\index{projection\-Matrix@{projection\-Matrix}!triangleExample.c@{triangle\-Example.\-c}}
+\subsubsection[{projection\-Matrix}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Mat4} projection\-Matrix}}\label{triangleExample_8c_a1f344d924f733a22d7659db612a0efe8}
+
+
+This variable contains projection matrix of orbit camera. 
+
+\mbox{[}E\-X\-T\-E\-R\-N\-S\mbox{]} This variable contains projection matrix.
+
+This variable contains projection matrix. \hypertarget{triangleExample_8c_af82b723635ac0c90962571915a1b1163}{\index{triangle\-Example.\-c@{triangle\-Example.\-c}!triangle\-Example@{triangle\-Example}}
+\index{triangle\-Example@{triangle\-Example}!triangleExample.c@{triangle\-Example.\-c}}
+\subsubsection[{triangle\-Example}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf Triangle\-Example\-Variables} triangle\-Example}}\label{triangleExample_8c_af82b723635ac0c90962571915a1b1163}
+instance of all global variables for triangle example. \begin{Desc}
+\item[Examples\-: ]\par
+\hyperlink{TriangleExample-example}{Triangle\-Example}.\end{Desc}
+\hypertarget{triangleExample_8c_a48b175665aab439caedaa0440a85462e}{\index{triangle\-Example.\-c@{triangle\-Example.\-c}!triangle\-Example\-Fragment\-Shader\-Source@{triangle\-Example\-Fragment\-Shader\-Source}}
+\index{triangle\-Example\-Fragment\-Shader\-Source@{triangle\-Example\-Fragment\-Shader\-Source}!triangleExample.c@{triangle\-Example.\-c}}
+\subsubsection[{triangle\-Example\-Fragment\-Shader\-Source}]{\setlength{\rightskip}{0pt plus 5cm}char const$\ast$ triangle\-Example\-Fragment\-Shader\-Source}}\label{triangleExample_8c_a48b175665aab439caedaa0440a85462e}
+{\bfseries Initial value\-:}
+\begin{DoxyCode}
+= 
+\textcolor{stringliteral}{"#version 330\(\backslash\)n"}
+
+\textcolor{stringliteral}{"in vec3 vColor;\(\backslash\)n"}
+
+\textcolor{stringliteral}{"layout(location=0)out vec4 fColor;\(\backslash\)n"}
+
+\textcolor{stringliteral}{"void main()\{\(\backslash\)n"}
+
+\textcolor{stringliteral}{"  fColor = vec4(vColor,1.f);"}
+
+\textcolor{stringliteral}{"\}\(\backslash\)n"}
+\end{DoxyCode}
+
+
+\mbox{[}V\-E\-R\-T\-E\-X\-S\-H\-A\-D\-E\-R\mbox{]} 
+
+\mbox{[}F\-R\-A\-G\-M\-E\-N\-T\-S\-H\-A\-D\-E\-R\mbox{]} \begin{Desc}
+\item[Examples\-: ]\par
+\hyperlink{TriangleExample-example}{Triangle\-Example}.\end{Desc}
+\hypertarget{triangleExample_8c_a90e98a213f90e03bd807c2f64031a8e2}{\index{triangle\-Example.\-c@{triangle\-Example.\-c}!triangle\-Example\-Vertex\-Shader\-Source@{triangle\-Example\-Vertex\-Shader\-Source}}
+\index{triangle\-Example\-Vertex\-Shader\-Source@{triangle\-Example\-Vertex\-Shader\-Source}!triangleExample.c@{triangle\-Example.\-c}}
+\subsubsection[{triangle\-Example\-Vertex\-Shader\-Source}]{\setlength{\rightskip}{0pt plus 5cm}char const$\ast$ triangle\-Example\-Vertex\-Shader\-Source}}\label{triangleExample_8c_a90e98a213f90e03bd807c2f64031a8e2}
+{\bfseries Initial value\-:}
+\begin{DoxyCode}
+= 
+
+\textcolor{stringliteral}{"#version 330\(\backslash\)n"}
+
+\textcolor{stringliteral}{"uniform mat4 projectionMatrix;\(\backslash\)n"}
+\textcolor{stringliteral}{"uniform mat4 viewMatrix;\(\backslash\)n"}
+
+\textcolor{stringliteral}{"layout(location=0)in vec3 position;\(\backslash\)n"}
+
+\textcolor{stringliteral}{"out vec3 vColor;"}
+
+\textcolor{stringliteral}{"void main()\{\(\backslash\)n"}
+
+\textcolor{stringliteral}{"  gl\_Position = projectionMatrix*viewMatrix*vec4(position,1);\(\backslash\)n"}
+
+\textcolor{stringliteral}{"  if(gl\_VertexID == 0)vColor = vec3(1.f,0.f,0.f);\(\backslash\)n"}
+\textcolor{stringliteral}{"  if(gl\_VertexID == 1)vColor = vec3(0.f,1.f,0.f);\(\backslash\)n"}
+\textcolor{stringliteral}{"  if(gl\_VertexID == 2)vColor = vec3(0.f,0.f,1.f);\(\backslash\)n"}
+\textcolor{stringliteral}{"  if(gl\_VertexID == 3)vColor = vec3(0.f,1.f,1.f);\(\backslash\)n"}
+
+\textcolor{stringliteral}{"\}\(\backslash\)n"}
+\end{DoxyCode}
+
+
+\mbox{[}G\-L\-O\-B\-A\-L\-S\mbox{]} 
+
+\mbox{[}V\-E\-R\-T\-E\-X\-S\-H\-A\-D\-E\-R\mbox{]} \begin{Desc}
+\item[Examples\-: ]\par
+\hyperlink{TriangleExample-example}{Triangle\-Example}.\end{Desc}
+\hypertarget{triangleExample_8c_ae64ebe4c77936fc93d161b97bd8e96df}{\index{triangle\-Example.\-c@{triangle\-Example.\-c}!view\-Matrix@{view\-Matrix}}
+\index{view\-Matrix@{view\-Matrix}!triangleExample.c@{triangle\-Example.\-c}}
+\subsubsection[{view\-Matrix}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Mat4} view\-Matrix}}\label{triangleExample_8c_ae64ebe4c77936fc93d161b97bd8e96df}
+
+
+This variable contains view matrix. 
+
+This variable contains view matrix. 
