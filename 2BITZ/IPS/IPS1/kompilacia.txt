@@ -1,0 +1,3 @@
+gcc -std=c99 -Wall -Wextra tmal.c -c
+gcc -std=c99 -Wall -Wextra test_tmal.c -c
+gcc -o test_tmal test_tmal.o tmal.o

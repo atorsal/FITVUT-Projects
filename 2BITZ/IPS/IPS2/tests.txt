@@ -1,0 +1,15 @@
+./pgrep 1 '.*wheel.*' 1 < sudoers
+./pgrep 0 '.*wheel.*' -1 < sudoers
+./pgrep 1 '.*wheel.*' -1 ".* ALL.*" 1 < sudoers
+./pgrep 1 '.*wheel.*' -1 ".* ALL.*" 1 ".*cd.*" 1 < sudoers
+./pgrep 2 '.*wheel.*' -1 ".* ALL.*" 1 ".*cd.*" 1 < sudoers
+./pgrep 2 '.*wheel.*' -1 ".* ALL.*" 1 ".*cd.*" 1 ".*root.*" 1  < sudoers
+./pgrep 3 '.*wheel.*' -1 ".* ALL.*" 1 ".*cd.*" 1 ".*root.*" 1  < sudoers
+./pgrep 3 '.*wheel.*' 1 ".* ALL.*" 2 ".*cd.*" 1 ".*root.*" 1  < sudoers
+./pgrep 3 '.*wheel.*' 1 ".* ALL.*" 2 ".*cd.*" 1 ".*root.*" 1  ".*NOPASSWD.*" -5 < sudoers
+./pgrep 7 ".*NETWORKING,.*" 1 ".*SOFTWARE,.*" 1 ".*SERVICES,.*" 1 ".*STORAGE,.*" 1 ".*DELEGATING,.*" 1 "PROCESSES,.*" 1 ".*LOCATE,.*" 1 ".*DRIVERS.*" 1 <sudoers
+
+./pgrep 2 "[^:]*-[^:]*:.*" 1 ".*:4.*" 1 <group
+./pgrep 1 "[^:]*-[^:]*:.*" 1 ".*:4.*" 1 <group
+./pgrep 2 "[^:]*-[^:]*:.*" 1 ".*:4.*" 1 ".*journal.*" -5 <group
+./pgrep 2 "[^:]*-[^:]*:.*" 1 ".*:4.*" 1 ".*journal.*" -5 "root.*" 5 <group

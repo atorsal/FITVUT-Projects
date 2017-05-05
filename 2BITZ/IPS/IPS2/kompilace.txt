@@ -1,0 +1,9 @@
+Pro zkompilovani pgrep.c na merlinovi pouzijte:
+g++-6.2 pgrep.c -o pgrep -lpthread -static
+g++-6.2 kostra_pgrep.c -o kostra_pgrep -lpthread -static
+
+
+
+Pro kompilaci pgrep.c na domacim pocitaci pouzijte:
+g++ pgrep.c -o pgrep -lpthread
+g++ kostra_pgrep.c -o kostra_pgrep -lpthread
