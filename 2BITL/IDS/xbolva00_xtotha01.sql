@@ -284,7 +284,7 @@ CREATE OR REPLACE TRIGGER auto_inkrementacia_cisla_izby
   FOR EACH ROW
 BEGIN
   :NEW.cislo_izby := cislo_izby.nextval;
-END autoincrement;
+END;
 /
 
 --- ukazka funkcnosti triggeru
