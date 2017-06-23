@@ -1,0 +1,190 @@
+#!/bin/sh
+
+# IOS - Operační systémy 
+# Projekt 1 - dirstat
+# Autor: Dávid Bolvanský, xbolva00
+# Marec 2016
+# Skenuje adresár zadaný vo forme argumentu, ak nie je zadaný, tak sa skenuje aktuálny
+# Vypíše sa zoznam rôznych informácií o adresári
+# Ak je skript spustený s prepnačom -i, adresáre a súbory sú ignorované podľa toho, či
+# sa zhodujú so zadaným regulárnym výrazom
+# V prípade akejkoľvek chyby sa skript ukončí a chybová hláška je vypísaná na stderr
+# Použitie: dirstat [-i FILE_ERE] [DIR]
+
+# Debug
+# export LC_ALL=POSIX
+
+# Process input
+HAS_REGEX=1 #false
+while getopts "i:" args; do
+  case $args in
+    i)
+      IGNORE=$OPTARG
+      HAS_REGEX=0 #true
+      ;;
+   \?)
+      echo "Usage: dirstat [-i FILE_ERE] [DIR]" >&2
+      exit 1
+      ;;
+  esac
+done
+
+shift $(( ${OPTIND} - 1 ))
+
+ARG_PATH="$1"
+ROOT_DIR="$PWD"
+if [ ! -z "$ARG_PATH" ];
+then
+   ROOT_DIR=$ARG_PATH
+fi
+
+# Check whether a valid directory
+if [ ! -d "$ROOT_DIR" ];
+then
+    echo "Invalid directory!" >&2
+    exit 1
+fi
+
+cd $ROOT_DIR
+
+# Check whether a regex matches the root directory
+if [ $HAS_REGEX -eq 0 ]; # REGEX ENABLED
+then
+    ROOT_DIR_NAME=$(echo "$PWD" | sed 's/.*\///')
+    TMP=$(echo "$ROOT_DIR_NAME" | egrep "$IGNORE")
+    if [ "$TMP" == "$ROOT_DIR_NAME" ];
+    then
+        echo "REGEX matches name of root directory!" >&2
+        exit 1
+    fi
+fi
+
+# **************** START OF FILE / DIR IGNORING ******************************
+
+ALL=$(find . 2>/dev/null)
+SCAN_SUCCESS="$?"
+
+if [ $SCAN_SUCCESS -eq 1 ] # fail
+then
+    echo "Error during fetching information!" >&2
+    exit 1
+fi
+
+# Get list, remove root dir and ./
+PATHS=$(echo "$ALL" | grep -v "\.$" |  sed 's/\.\///') 
+
+FILES=''
+DIRS='.' # Root dir always!
+
+IFS_OLD=$IFS
+IFS='
+'
+
+for R_PATH in $PATHS;
+do
+    if [ -h $R_PATH ]; # no symlinks
+    then
+       continue
+    fi
+    
+    IS_ALLOWED_PATH=0 # true
+    if [ $HAS_REGEX -eq 0 ]; # REGEX ENABLED
+    then
+        PARTS=$(echo "$R_PATH" | tr '/' '\n')
+        for PART in $PARTS;
+        do
+           TMP=$(echo "$PART" | egrep -v "$IGNORE")
+           if [ -z "$TMP" ];
+           then
+               IS_ALLOWED_PATH=1 #false
+               break
+           fi
+        done
+    # DEBUG   
+    # echo "$IS_ALLOWED_PATH for $R_PATH"
+    fi
+    
+    if [ "$IS_ALLOWED_PATH" -eq 0 ];
+    then
+        N_PATH="./$R_PATH"
+        if [ -d "$N_PATH" ];
+        then
+                DIRS="$DIRS $N_PATH"
+        else
+            if [ -f "$N_PATH" ];
+            then
+                if [ -z "$FILES" ];
+                then
+                    FILES="$N_PATH"
+                else
+                    FILES="$FILES $N_PATH"
+                fi
+            fi
+        fi
+    fi
+done
+IFS=$IFS_OLD
+
+# **************** END OF FILE / DIR IGNORING ******************************
+
+# Get information
+ALLOWED_FILES=$(echo "$FILES" | sed 's/\ \.\//\
+\.\//g')
+ALLOWED_DIRS=$(echo "$DIRS" | sed 's/\ \.\//\
+\.\//g')
+
+DIRS_COUNT=$(echo "$ALLOWED_DIRS" | wc -l | tr -d '[[:space:]]')
+
+DIR_DEPTH=$(echo "$ALLOWED_DIRS" | awk -F/ '{print NF}' | sort -n -r | head -1)
+
+FILES_COUNT=0
+ROOT_DIR_SIZE=0
+AVERAGE_FILES_COUNT=0
+AVERAGE_FILE_SIZE="N/A"
+FILE_SIZE_MEDIAN="N/A"
+LARGEST_FILE="N/A"
+if [ "$ALLOWED_FILES" != "" ];
+then
+   FILES_COUNT=$(echo "$ALLOWED_FILES" | wc -l | tr -d '[[:space:]]')
+   LARGEST_FILE=$(echo "$ALLOWED_FILES"  | tr '\n' '\0' | xargs -0 ls -l | awk '{print $5}' | sort -n -r | head -1)
+   ROOT_DIR_SIZE=$(echo "$ALLOWED_FILES"  | tr '\n' '\0' | xargs -0 ls -l | awk '{ total+=$5 } END { print total }')
+   AVERAGE_FILES_COUNT=$((FILES_COUNT/DIRS_COUNT))
+   AVERAGE_FILE_SIZE=$((ROOT_DIR_SIZE/FILES_COUNT))
+   FILE_SIZE_MEDIAN=$(echo "$ALLOWED_FILES"  | tr '\n' '\0' | xargs -0 ls -l | awk '{print $5}'| sort -n | awk '{sizes[NR]=$1} END { if (NR%2) printf "%d", sizes[(NR+1)/2]; else printf "%d", (sizes[NR/2]+sizes[NR/2+1])/2}')
+   if [ $LARGEST_FILE -eq 0 ];
+   then
+       LARGEST_FILE="N/A"
+   fi
+fi
+
+echo "Root directory: $ROOT_DIR"
+echo "Directories: $DIRS_COUNT"
+echo "Max depth: $DIR_DEPTH"
+echo "Average no. of files: $AVERAGE_FILES_COUNT"
+echo "All files: $FILES_COUNT"
+echo "  Largest file: $LARGEST_FILE"
+echo "  Average file size: $AVERAGE_FILE_SIZE"
+echo "  File size median: $FILE_SIZE_MEDIAN"
+                        
+                                # filename   # remove dot from start  #show files with dot in filename
+FILE_EXTS=$(echo "$ALLOWED_FILES" | sed 's/.*\///' | sed 's/^\.//' | grep "\." | sed 's/.*\.//' | grep '^[[:alnum:]]*$' | sort -u)
+FILE_EXTS_WITH_COMMA=$(echo $FILE_EXTS | tr ' ' ',' | sed 's/,$//')
+
+echo "File extensions: $FILE_EXTS_WITH_COMMA"
+
+# Print information about the specific file extension
+for FILE_EXT in $FILE_EXTS 
+do
+    FILES_COUNT_EXT=$(echo "$ALLOWED_FILES" | grep "\.$FILE_EXT$" | wc -l | tr -d '[[:space:]]')
+    LARGEST_FILE_EXT=$(echo "$ALLOWED_FILES" | grep "\.$FILE_EXT$" | tr '\n' '\0' | xargs -0 ls -l | awk '{print $5}' | sort -n -r | head -1 | awk '{print $1}')
+    FILES_SIZE_EXT=$(echo "$ALLOWED_FILES" | grep "\.$FILE_EXT$" | tr '\n' '\0' | xargs -0 ls -l | awk '{ total+=$5 } END { print total }')
+    FILE_SIZE_MEDIAN=$(echo "$ALLOWED_FILES" | grep "\.$FILE_EXT$" | tr '\n' '\0' | xargs -0 ls -l | awk '{print $5}' | sort -n | awk '{sizes[NR]=$1} END { if (NR%2) printf "%d", sizes[(NR+1)/2]; else printf "%d", (sizes[NR/2]+sizes[NR/2+1])/2}')
+    
+    echo "Files .$FILE_EXT: $FILES_COUNT_EXT"; 
+    echo "  Largest file .$FILE_EXT: $LARGEST_FILE_EXT"
+    echo "  Average file size .$FILE_EXT: $((FILES_SIZE_EXT/FILES_COUNT_EXT))"
+    echo "  File size median .$FILE_EXT: $FILE_SIZE_MEDIAN" 
+done
+
+# Exit script
+exit 0

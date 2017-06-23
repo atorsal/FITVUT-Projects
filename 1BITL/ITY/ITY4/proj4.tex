@@ -1,0 +1,54 @@
+\documentclass[a4paper,11pt, titlepage]{article}
+\usepackage[left=2cm, text={17cm, 24cm}, top=3cm]{geometry}
+\usepackage{times}
+\usepackage[czech]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\bibliographystyle{czplain}
+\newcommand{\myuv}[1]{\quotedblbase #1\textquotedblleft}
+
+\pagestyle{empty}
+\begin{document}
+	
+	\begin{titlepage}
+		\begin{center}
+			{\Huge\textsc{Vysoké učení technické v~Brně}}\\
+			\vspace{+0.8em}
+			{\huge\textsc{Fakulta informačních technologií}}\\
+			\bigskip
+			\vspace{\stretch{0.382}} 
+			\LARGE{Typografie a~publikování\,--\,4.projekt}\\
+			\vspace{-0.25em}
+			\Huge{Bibliografické citace}
+			\vspace{\stretch{0.618}}
+		\end{center}
+		{\Large \today \hfill Dávid Bolvanský}
+	\end{titlepage}
+
+\newpage
+\pagestyle{plain}
+
+\section{Niečo o~typografií}
+Typografia je súhrn pravidiel, ktoré podporujú zrozumiteľnosť a čitateľnosť textu. Je to určitá forma umenia a techniky navrhovania písiem, má dôležité miesto v~každého živote dizajnéra. Typografiu môžeme taktiež pokľadať za formu jazyka \cite{Lupton:Thinking_with_type}. Slovo typografia je odvodené z~gréckeho \emph{typós} (znaky) a~ \emph{graphein} (písať), prenesene grafika textu. Znaky boli za rozkvetu Rímskej ríše tesané do kameňa. Slovo \emph{typos} má aj~tento význam \cite{Olsak:Typografie_co_to_je}.
+ Zjednodušene povedané, je to náuka o~písme, jeho vhodnom výbere, použití a forme. Výber správneho písma je dôležitý. Rôzny typy písma môžu vzbudiť rôzne emócie, a to napríklad filozofický, politický alebo aj umelecký dojem \cite{Ambrose:Typografie}. Odporúča sa prispôsobiť vlastnosti písma cieľovej skupine ľudí, pre ktorý je dokument určený. Prírodnej poéme najlepšie pristane ľahká kurzíva a nič nepodporí politické prehlásenie ráznejšie než ťažká egyptienka. Písmo s~oblými tvarmi a~menším duktusom zobrazené v~jemných farbách vyjadrí ženskejší štýl. Mužne zas pôsobí hranatejšie písmo s~hrubšími ťahmi a~tmavými, sýtejšími farbami \cite{Saltz:Zaklady_typografie}.
+
+\section{Typografia a jej história}
+História západnej typografie sa datuje okolo roku 1450 v~súvislosti s~vynálezom kníhtlače v~Európe. V~roku 1450 Johannes Gutenberg uviedol do
+prevádzky prvý tlačiarenský lis využívajúci pohyblivé litery. Ďalších niekoľko storočí dochádzalo predovšetkým k~skvalitňovaniu tlačiarenských
+strojov vývojom nových písiem. Výrazný posun v~tlači je možné pozorovať v~19. storočí, kedy prichádza mnoho nových technológií ako 
+litografia, farebná tlač, \myuv{rotačka} a~ofsetová tlač. Najviac nových technólogií však prichádza až v~20. storočí \cite{Jirasek:Bakalarska_praca}.
+
+\section{Pravidlá, odporúčania a chyby v~typografií}
+Typografické pravidlá sú rovnaké a nezávisia od programu , ktorý používame na písanie a úpravu dokumentu. Pre písaný text sa postupom času vyvinulo veľké množstvo pravidiel, ktoré podporujú jeho zrozumiteľnosť a čitateľnosť. K~tým základným patrí optický stred, zlatý rez, normalizované formáty 
+a~ďalšie \cite{Culakova:Bakalarska_praca}. Uznávaní dizajnéri často tvrdia, že pravidlá tvorby existujú preto, aby sa porušovali, nemalo by to byť aspoň v~jednom pravidle. Toto pravidlo by malo zostať 
+zachované vždy\,--\,je ním čitateľnosť \cite{Samara:Graficky_design}. Dobrá typografia je nerušivým nástrojom k~odovzdaniu obsahu informácie. Najlepšia typografia je taká, ktorú nie je ani vidieť, čitateľ sa plne sústredí na samotný text. Čitateľ nesmie byť použitou typografiou vyčerpávaný ani rušený \cite{Olsak:Typografie_co_to_je}. Základnou chybou neskúseného sádzača býva snaha dostať toho do dokumentu čo najviac informácií, neberie ohľad na jeho čitateľnosť. Nie je ľahké vyjadriť a opísať správny postup vedúci k~optimálnej sadzbe \cite{Vesely:Exkurze_do_taju}. Nepísaná múdrosť profesionálnych technických redaktorov hovorí, že tlačený text má obsahovať v~riadku priemerne desať alebo menej slov \cite{Durst:Vytvareni_rejstriku}. Existujú ale normy, ktoré typografické zásady presne vymedzujú. Čiastočne sú touto normou Pravidlá slovenského pravopisu, ktoré na niektorých miestach determinujú typografické pravidlá, ale je to tiež Slovenská technická norma \textit{STN 01 6910 Pravidlá písania a úpravy písomností}, ktorá poskytuje výber z~viacerých príbuzných noriem \cite{Jurik:Chyby_v_typografii}.
+
+\section{O~systéme Latex}
+{\LaTeX} je vysoko kvalitný typografický systém určený pre profesionálne a~poloprofesionálne sádzanie dokumentov \cite{Martinek:Latexove_speciality}. Bol vyvinutý v~roku 1985 Leslie Lamportom. {\LaTeX} využíva ako formátovací jazyk sádzací systém {\TeX} - 
+značkovací jazyk vyvinutý Donaldom Knuthom v~70. rokoch. Základnou myšlienkou je, že autor dokumentu by sa mal starať len o~text článku. O~formátovánie by sa mali postarať vývojári dokumentu \cite{Mittelbach:An_Introduction_to_Latex}. Projekt {\TeX} je už považovaný za ukončený, keďže tvorca sa rozhodol ukončiť jeho ďalší vývoj. Žiadne iné programy sa teda nesmú nazývať \TeX om \cite{Syropoulos:Zbornik}.
+Používa logo \LaTeX, ktoré sa vkladá do dokumentu pomocou príkazu \verb|\LaTeX|. Ako sádzací nástroj používa program \TeX.
+
+
+\newpage
+\bibliography{pouzita_literatura}
+\end{document}
