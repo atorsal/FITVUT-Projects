@@ -84,7 +84,7 @@ ER diagram, SQL skript (34/29, +5 za Apex stranku)
 
 **IPK**
 
-1. projekt - ftrest: Klient/server program pomocou Rest API (10/10)
+1. projekt - ftrest - Klient/server program pomocou Rest API (10/10)
 2. projekt - Chatovaci klient (20/20
 
 **IZG**
