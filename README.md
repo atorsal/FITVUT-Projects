@@ -90,5 +90,6 @@ ER diagram, SQL skript (34/29, +5 za Apex stranku)
 **IZG**
 
 Cvicenia (18/18)
+
 Projekt - Vykreslovací řetězec a programování shaderů (18/18)
 
