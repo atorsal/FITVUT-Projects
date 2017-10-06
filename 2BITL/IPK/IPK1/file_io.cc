@@ -57,7 +57,7 @@ bool Storage::is_user_root_directory() {
         size_t n = std::count(f.begin(), f.end(), '/');
         return f.find('/') == std::string::npos || (f.substr(f.size()-1,1) == "/" && n == 1);
 }
-
+p
 // Create directory
 bool Storage::create_directory() {
         return mkdir(file.c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);

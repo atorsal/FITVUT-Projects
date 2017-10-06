@@ -1,0 +1,54 @@
+\begin{thebibliography}{1}
+
+\bibitem{petri}
+Michael Blondin, Alain Finkel, Christoph Haase, and Serge Haddad.
+\newblock Approaching the coverability problem continuously.
+\newblock In {\em Tools and Algorithms for the Construction and Analysis of
+  Systems - 22nd International Conference, {TACAS} 2016, Held as Part of the
+  European Joint Conferences on Theory and Practice of Software, {ETAPS} 2016,
+  Eindhoven, The Netherlands, April 2-8, 2016, Proceedings}, pages 480--496,
+  2016.
+
+\bibitem{forest}
+Luk{\'{a}}s Hol{\'{\i}}k, Martin Hruska, Ondrej Leng{\'{a}}l, Adam Rogalewicz,
+  and Tom{\'{a}}s Vojnar.
+\newblock Counterexample validation and interpolation-based refinement for
+  forest automata.
+\newblock In {\em Verification, Model Checking, and Abstract Interpretation -
+  18th International Conference, {VMCAI} 2017, Paris, France, January 15-17,
+  2017, Proceedings}, pages 288--309, 2017.
+
+\bibitem{mediator}
+Luk{\'{a}}s Hol{\'{\i}}k, Malte Isberner, and Bengt Jonsson.
+\newblock Mediator synthesis in a component algebra with data.
+\newblock In {\em Correct System Design - Symposium in Honor of
+  Ernst-R{\"{u}}diger Olderog on the Occasion of His 60th Birthday, Oldenburg,
+  Germany, September 8-9, 2015. Proceedings}, volume 9360 of {\em Lecture Notes
+  in Computer Science}, pages 238--259. Springer, 2015.
+
+\bibitem{parikh}
+Eryk Kopczynski and Anthony~Widjaja To.
+\newblock Parikh images of grammars: Complexity and applications.
+\newblock In {\em Proceedings of the 25th Annual {IEEE} Symposium on Logic in
+  Computer Science, {LICS} 2010, 11-14 July 2010, Edinburgh, United Kingdom},
+  pages 80--89, 2010.
+
+\bibitem{ws1s}
+Mukesh Kumar and Kamlesh Dutta.
+\newblock Detecting wormhole attack on data aggregation in hierarchical {WSN}.
+\newblock {\em {IJISP}}, 11(1):35--51, 2017.
+
+\bibitem{comp_theory}
+Michael Sipser.
+\newblock {\em Introduction to the theory of computation}.
+\newblock {PWS} Publishing Company, 1997.
+
+\bibitem{presburger}
+Makoto Tatsuta, Quang~Loc Le, and Wei{-}Ngan Chin.
+\newblock Decision procedure for separation logic with inductive definitions
+  and presburger arithmetic.
+\newblock In {\em Programming Languages and Systems - 14th Asian Symposium,
+  {APLAS} 2016, Hanoi, Vietnam, November 21-23, 2016, Proceedings}, pages
+  423--443, 2016.
+
+\end{thebibliography}

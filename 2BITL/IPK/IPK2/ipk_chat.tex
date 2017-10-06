@@ -1,0 +1,62 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{framed}
+\usepackage[left=2cm,right=2cm,top=2.5cm,bottom=2cm]{geometry}
+\author{Dávid Bolvanský}
+\begin{document}
+	\noindent
+	\textbf{2. projekt v predmete IPK:} Chatovací klient\\
+	\textbf{Meno a priezvisko:} Dávid Bolvanský\\
+	\textbf{Login:} xbolva00
+
+\section{Požiadávky úlohy}
+	Našou úlohou bolo vytvoriť chatovacieho klienta, ktorý prijíma správy od chatovacieho servera (správy od iných učastníkov chatu) a zároveň posielia správy zadané uživateľom na tento server. Chatovací klient je napísaný v C++11 a zostavuje sa príkazom \textbf{make} v adresári s projektom.
+	
+\section{Parametre programu}
+	Chatovací klient je možné spustiť dvoma formátmi zadania argumentov:
+	\begin{framed}
+	./chat\_client -i <hostname> -u <username>
+	\end{framed}
+	\begin{framed}
+	./chat\_client -u <username> -i <hostname>
+	\end{framed}
+
+	Parameter \textbf{hostname} reprezentuje $IPv4$ adresu chatovacieho servera a parameter 
+	\textbf{username} definuje meno, pod akým bude užívateľ vystupovať v chatovacej diskusii.
+	
+\section{Implementácia pomocou vlákien}
+	Keďže odosielanie a aj prijímanie správ sú blokujúce operácie, je potrebné presunúť tie operácie z hlavného procesu na nové procesy alebo vlákna. V tejto implementácií chatovacieho klienta sú použité $POSIX$ové vlákna ($pthreads$). Používajú sa dva vlákna -- jedno pre príjem a výpis správ zo servera a druhé pre čakanie na vstup a odosielanie uživateľom zadaných správ.
+
+\section{Pripojenie k chatovaciemu serveru}
+	Chatovací klient sa po spustení pokúsi o nadviazanie pripojenia k serveru. Pripája sa k serveru s IPv4 adresou definovanou v argumente \textbf{hostname}. Klient so serverom komunikuje pomocou $TCP$ protokolu a pripája sa na port \textbf{21011}. Ak nie je možné sa pripojiť k serveru, vypíše sa chybové hlásenie na štandardný chybový výstup s informáciou o konkrétnej chybe pripojenia a klient sa ukončí s kódom $1$.
+
+\section{Prijímanie a výpis správ}
+	Po úspešnom pripojení k chatovaciemu serveru klient odošle správu:
+	\begin{framed}
+	username logged in\texttt{\textbackslash{r}\textbackslash{n}}
+	\end{framed}
+	Následne chatovací klient príjíma a zároveň vypisuje na štandardný výstup všetko, čo mu posiela chatovací server. Pri chybe prijímania (napr. server bol medzičasom ukončený) je vypísané chybové hlásenie na štandardný chybový výstup a klient sa ukončí s kódom $1$.
+
+\newpage
+
+\section{Posielanie správ zo vstupu}
+	Chatovací klient čaká na vstup od užívateľa, ktorý sa ako správa pošle na server. Zadávanie správy užívateľ ukončí stlačením tlačidla Enter. Ak je zadaná správa prázdna, na server sa nič neposiela. Pri nenulovej dĺžke správe dochádza k jej odoslaniu na server. Správa je odoslaná v nasledovnom formáte:
+	\begin{framed}
+	username: message\texttt{\textbackslash{r}\textbackslash{n}}
+	\end{framed}
+	
+	Klient sa ukončí s kódom $0$ ak nastanie koniec štandardného vstupu ($EOF$). Ak dôjde k chybe počas odosielania správy, chybové hlásenie je vypísané na štandardný chybový výstup a klient sa ukončí s kódom $1$.
+	
+\section{Spracovanie SIGINT signálu}
+	V hlavnom procese chatovacieho klienta odchytíme signál $SIGINT$ pomocou funkcie \textbf{signal}, ktorej ako druhý argument uvedieme funkciu, ktorá ma byť spustená po prijatí signálu $SIGINT$. Tento signál je vyvolaný pomocou \textbf{Ctrl-C}, resp. \textbf{kill -INT <pid>} v termináli. V tejto funkcii odošlem klient serveru správu vo formáte:
+	\begin{framed}
+	username logged out\texttt{\textbackslash{r}\textbackslash{n}}
+	\end{framed}
+	Chatovací klient sa následne ukončí s kódom $0$.
+
+\end{document}

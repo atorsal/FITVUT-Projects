@@ -1,0 +1,306 @@
+\documentclass[xcolor=dvipsnames]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[slovak]{babel}
+\usepackage{graphics}
+\usepackage{color}
+\usepackage{amsfonts}
+\usepackage{wrapfig}
+\usepackage{tikz}
+\usepackage[export]{adjustbox}
+
+\usetheme{PaloAlto}
+\useinnertheme{rounded}
+\beamertemplatenavigationsymbolsempty
+\setbeamertemplate{footline}[frame number]
+\newcommand{\myuv}[1]{\quotedblbase #1\textquotedblleft}
+ 
+ 
+%Information to be included in the title page:
+\title{Abstrakcia nad konečnými automatmi v analýze programov}
+\subtitle{Projektová prax 1} 
+\author{Dávid Bolvanský}
+\institute{Vysoké učení technické v Brně \\Fakulta informačních technologií}
+ 
+ 
+ 
+\begin{document}
+ 
+\frame{\titlepage}
+
+\begin{frame}
+\frametitle{Obsah}
+\tableofcontents
+\end{frame}
+
+\section{Úvod}
+ 
+\begin{frame}
+\frametitle{Úvod}
+\begin{itemize}
+\item Široké využitie automatov v informačných technológiách
+\item Formálna analýza programov, spracovanie textu
+\item Rozhodovanie o prázdnosti jazyku automatu, ktorý je výsledkom operácií nad automatmi
+\item Automatové algoritmy často založené na konštrukcii produktu
+\item Kvadratická zložitosť produktu
+\item Snaha o aproximácie
+\item Naša problematika: aproximácia testu prázdnosti prieniku jazykov rozpoznávaných automatmi
+
+\end{itemize}
+\end{frame}
+
+\section{Prienik jazykov}
+ 
+\begin{frame}
+\frametitle{Prienik jazykov automatov}
+\begin{block}{Prázdnosť prieniku jazykov rozpoznávaných automatmi $A$ a $B$}
+	\center{$L(A) \cap L(B) = \emptyset$}
+\end{block}
+
+\begin{block}{Test prázdnosti jazyka}
+Test prázdnosti jazyka rozpoznávaného automatom analyzuje dostupnosť koncových stavov v produkte automatov od počiatočného stavu.
+\end{block}
+
+
+\begin{block}{Aproximácia testu prázdnosti prieniku}
+Definujme $\Phi(A)$ ako aritmetickú formulu popisujúcu dlžky slov v jazyku rozpoznávaného automatom $A$.
+	\center{$UNSAT(\Phi(A) \wedge \Phi(B)) \implies L(A) \cap L(B) = \emptyset$}
+
+\end{block}
+\end{frame}
+
+\section{Aproximácia testu prázdnosti}
+
+\begin{frame}
+\frametitle{Postup aproximácie testu prázdnosti}
+\begin{itemize}
+\item Na začiatku máme nederministický konečný automat $A$.
+\end{itemize}
+
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (12.4,-17.9) circle (3);
+\draw (12.4,-17.9) node {$q_{0}$};
+\draw [black] (24.8,-17.9) circle (3);
+\draw (24.8,-17.9) node {$q_{1}$};
+\draw [black] (40.6,-13.2) circle (3);
+\draw (40.6,-13.2) node {$q_{2}$};
+\draw [black] (40.6,-13.2) circle (2.4);
+\draw [black] (40.6,-23.2) circle (3);
+\draw (40.6,-23.2) node {$q_{3}$};
+\draw [black] (40.6,-23.2) circle (2.4);
+\draw [black] (39.277,-10.52) arc (234:-54:2.25);
+\draw (40.6,-5.95) node [above] {$a$};
+\fill [black] (41.92,-10.52) -- (42.8,-10.17) -- (41.99,-9.58);
+\draw [black] (41.923,-25.88) arc (54:-234:2.25);
+\draw (40.6,-30.45) node [below] {$b$};
+\fill [black] (39.28,-25.88) -- (38.4,-26.23) -- (39.21,-26.82);
+\draw [black] (27.68,-17.04) -- (37.72,-14.06);
+\fill [black] (37.72,-14.06) -- (36.82,-13.8) -- (37.1,-14.76);
+\draw (33.61,-16.11) node [below] {$a$};
+\draw [black] (27.64,-18.85) -- (37.76,-22.25);
+\fill [black] (37.76,-22.25) -- (37.16,-21.52) -- (36.84,-22.47);
+\draw (31.72,-21.09) node [below] {$a$};
+\draw [black] (4.6,-17.9) -- (9.4,-17.9);
+\fill [black] (9.4,-17.9) -- (8.6,-17.4) -- (8.6,-18.4);
+\draw [black] (15.4,-17.9) -- (21.8,-17.9);
+\fill [black] (21.8,-17.9) -- (21,-17.4) -- (21,-18.4);
+\draw (18.6,-18.4) node [below] {$b$};
+\end{tikzpicture}
+\end{center}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Krok 1: Prevod na jednopísmenkový NKA}
+\begin{itemize}
+\item Následne ho prevedieme na jednopísmenkový nedeterministický konečný automat $A'$, ktorý ma iný jazyk, ale zároveň platí, že $\Phi(A) = \Phi(A')$.
+\end{itemize}
+
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (12.4,-17.9) circle (3);
+\draw (12.4,-17.9) node {$q_{0}$};
+\draw [black] (24.8,-17.9) circle (3);
+\draw (24.8,-17.9) node {$q_{1}$};
+\draw [black] (40.6,-13.2) circle (3);
+\draw (40.6,-13.2) node {$q_{2}$};
+\draw [black] (40.6,-13.2) circle (2.4);
+\draw [black] (40.6,-23.2) circle (3);
+\draw (40.6,-23.2) node {$q_{3}$};
+\draw [black] (40.6,-23.2) circle (2.4);
+\draw [black] (39.277,-10.52) arc (234:-54:2.25);
+\draw (40.6,-5.95) node [above] {$*$};
+\fill [black] (41.92,-10.52) -- (42.8,-10.17) -- (41.99,-9.58);
+\draw [black] (41.923,-25.88) arc (54:-234:2.25);
+\draw (40.6,-30.45) node [below] {$*$};
+\fill [black] (39.28,-25.88) -- (38.4,-26.23) -- (39.21,-26.82);
+\draw [black] (27.68,-17.04) -- (37.72,-14.06);
+\fill [black] (37.72,-14.06) -- (36.82,-13.8) -- (37.1,-14.76);
+\draw (33.61,-16.11) node [below] {$*$};
+\draw [black] (27.64,-18.85) -- (37.76,-22.25);
+\fill [black] (37.76,-22.25) -- (37.16,-21.52) -- (36.84,-22.47);
+\draw (31.72,-21.09) node [below] {$*$};
+\draw [black] (4.6,-17.9) -- (9.4,-17.9);
+\fill [black] (9.4,-17.9) -- (8.6,-17.4) -- (8.6,-18.4);
+\draw [black] (15.4,-17.9) -- (21.8,-17.9);
+\fill [black] (21.8,-17.9) -- (21,-17.4) -- (21,-18.4);
+\draw (18.6,-18.4) node [below] {$*$};
+\end{tikzpicture}
+\end{center}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Krok 2: Determinizácia jednopísmenkového NKA}
+\begin{itemize}
+\item Zdeterminizujeme jednopísmenkový NKA na jednopísmenkový derministický konečný automat $A''$.
+\end{itemize}
+
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (12.4,-17.9) circle (3);
+\draw (12.4,-17.9) node {$\{q_{0}\}$};
+\draw [black] (24.8,-17.9) circle (3);
+\draw (24.8,-17.9) node {$\{q_{1}\}$};
+\draw [black] (38.2,-17.9) circle (3);
+\draw (38.2,-17.9) node {\tiny{$\{q_{2}, q_{3}\}$}};
+\draw [black] (38.2,-17.9) circle (2.4);
+\draw [black] (27.8,-17.9) -- (35.2,-17.9);
+\fill [black] (35.2,-17.9) -- (34.4,-17.4) -- (34.4,-18.4);
+\draw (31.5,-18.4) node [below] {$*$};
+\draw [black] (4.6,-17.9) -- (9.4,-17.9);
+\fill [black] (9.4,-17.9) -- (8.6,-17.4) -- (8.6,-18.4);
+\draw [black] (15.4,-17.9) -- (21.8,-17.9);
+\fill [black] (21.8,-17.9) -- (21,-17.4) -- (21,-18.4);
+\draw (18.6,-18.4) node [below] {$*$};
+\draw [black] (36.877,-15.22) arc (234:-54:2.25);
+\draw (38.2,-10.65) node [above] {$*$};
+\fill [black] (39.52,-15.22) -- (40.4,-14.87) -- (39.59,-14.28);
+\end{tikzpicture}
+\end{center}
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Krok 3: Zistenie dĺžok slov}
+\begin{itemize}
+\item Každy jednopísmenkový deterministický konečný automat ma dve časti - rukoväť (handle) a laso (loop).
+
+\begin{center}
+\begin{tikzpicture}[scale=0.15]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (12.4,-17.9) circle (3);
+\draw (12.4,-17.9) node {$q_{0}$};
+\draw [black] (24.8,-17.9) circle (3);
+\draw (24.8,-17.9) node {$q_{1}$};
+\draw [black] (24.8,-17.9) circle (2.4);
+\draw [black] (37.2,-17.9) circle (3);
+\draw (37.2,-17.9) node {$q_{2}$};
+\draw [black] (51.6,-17.9) circle (3);
+\draw (51.6,-17.9) node {$q_{3}$};
+\draw [black] (51.6,-17.9) circle (2.4);
+\draw [black] (57.8,-8.9) circle (3);
+\draw (57.8,-8.9) node {$q_{4}$};
+\draw [black] (45.1,-8.9) circle (3);
+\draw (45.1,-8.9) node {$q_{5}$};
+\draw [black] (45.1,-8.9) circle (2.4);
+\draw [black] (27.8,-17.9) -- (34.2,-17.9);
+\fill [black] (34.2,-17.9) -- (33.4,-17.4) -- (33.4,-18.4);
+\draw (31,-18.4) node [below] {$*$};
+\draw [black] (4.6,-17.9) -- (9.4,-17.9);
+\fill [black] (9.4,-17.9) -- (8.6,-17.4) -- (8.6,-18.4);
+\draw [black] (15.4,-17.9) -- (21.8,-17.9);
+\fill [black] (21.8,-17.9) -- (21,-17.4) -- (21,-18.4);
+\draw (18.6,-18.4) node [below] {$*$};
+\draw [black] (40.2,-17.9) -- (48.6,-17.9);
+\fill [black] (48.6,-17.9) -- (47.8,-17.4) -- (47.8,-18.4);
+\draw (44.4,-18.4) node [below] {$*$};
+\draw [black] (58.236,-11.842) arc (-4.61158:-64.51347:6.588);
+\fill [black] (58.24,-11.84) -- (57.67,-12.6) -- (58.67,-12.68);
+\draw (57.7,-16.4) node [right] {$*$};
+\draw [black] (47.821,-7.656) arc (107.46434:72.53566:12.091);
+\fill [black] (47.82,-7.66) -- (48.73,-7.89) -- (48.43,-6.94);
+\draw (51.45,-6.6) node [above] {$*$};
+\draw [black] (48.864,-16.708) arc (-123.64616:-164.67853:8.51);
+\fill [black] (48.86,-16.71) -- (48.48,-15.85) -- (47.92,-16.68);
+\draw (46.09,-15.99) node [left] {$*$};
+\end{tikzpicture}
+\end{center}
+
+\item Pre náš ukážkový automat platí, že stavy $q_{0}, q_{1}, q_{2}, q_{3}$ sú v rukoväti a stavy $q_{3}, q_{4}, q_{5}$ v lase.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Krok 4: Zostavenie aritmetickej formule}
+
+\begin{block}{Aritmetická formula popisujúca dĺžky slov pre koncové stavy automatu $A$}
+$$
+\Phi_q(A) =
+  \begin{cases}
+   |d| = v & \text{ak $q$ v rukoväti, $v > n$} \\
+   |d| = v + k*l & \text{ak $q$ v lase, $v \geq n$}
+  \end{cases}
+$$
+\begin{itemize}
+\item n je dĺžka rukoväte
+\item v je dľžka od počiatočného stavu po konečný stav
+\item k je dľžka lasa
+\item l je počet cyklení v lase
+\end{itemize}
+\end{block}
+
+\begin{block}{Aritmetická formula popisujúca dĺžky slov jazyku rozpoznávaného automatom $A$}
+\center{$\Phi(A) = \bigvee_{q \in F} \Phi_q(A)$}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{Krok 5: Overenie splniteľnosti aritmetickej formule}
+
+\begin{block}{Súvis splniteľnosti aritmeckej formule s prázdnosťou prieniku jazykov}
+Zostavíme aritmetické formule $\Phi(A)$ a $\Phi(B)$ a následne overíme splniteľnosť aritmetickej formule $\Phi(A) \wedge \Phi(B)$. Táto formula môže byť: \\
+\begin{itemize}
+\item splniteľná - nevieme rozhodnúť o prázdnosti či neprázdnosti prieniku ($\rightarrow$ použitie pokročilejších postupov aproximácie, Parikhove obrazy) \\
+\item nesplniteľná - prienik jazykov rozpoznávaných automatmi je prázdny
+\end{itemize}
+
+\end{block}
+\end{frame}
+
+\section{Implementácia algoritmu}
+
+\begin{frame}
+\frametitle{Implementácia algoritmu na výpočet dĺžok slov}
+\begin{itemize}
+\item Implementácia algoritmu v Jave
+\item Základné operácie s automatmi pomocou knižnice BRICS
+\item Zvolený Alt-Ergo ako SMT solver na riešenie splniteľnosti aritmetickej formule $\Phi(A) \wedge  \Phi(B)$
+\end{itemize}
+\end{frame}
+
+
+\section{Zhrnutie}
+
+\begin{frame}
+\frametitle{Zhrnutie}
+\begin{itemize}
+\item Problematika rozhodovania o prázdnosti prieniku jazykov rozpoznávanými automatmi
+\item Jednoduchá aproximácia pomocou dĺžkok slov v jazyku automatu
+\item Implementácia algoritmu na výpočet dĺžok slov
+\item Do budúcna... prepojenie konštrukcie produktu s dĺžkami slov a Parikhových obrazov (Parikh images)
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Záver}
+\center{\Huge{Ďakujem za pozornosť.}}
+\end{frame}
+ 
+\end{document}
+
+
