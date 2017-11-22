@@ -1,0 +1,49 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[left=2cm,right=2cm,top=2.5cm,bottom=2cm]{geometry}
+\author{Dávid Bolvanský}
+\begin{document}
+	\noindent
+	Task documentation CHA: C Header Analysis in PHP 5 for IPP 2016/2017\\
+	Name and surname: Dávid Bolvanský\\
+	Login: xbolva00
+
+\section{Basic Idea}
+	As an initial idea, we decided to use regular expressions as the base for C Header Analysis. We put modifier \textbf{u} to any regular expression to active and support UTF-8. Our final implementation is based mainly on regular expressions in our parsing logic. The project can be divided to the following phrases which are described below:\\
+	$\rightarrow$ Processing Arguments\\ 
+	$\rightarrow$ Input Source\\ 
+	$\rightarrow$ Header Analysis\\
+	$\rightarrow$ Output Source\\
+	$\rightarrow$ Writing to XML
+	
+	
+\section{Processing Arguments}
+	We used the combination of processing \textbf{argv} and \textbf{getopt} to detect options and their values, if any. At first we supported standard options, later we added supported for shortened options like \textbf{-i, -o}. In this phrase we check entered options for various errors. Some options require integer values, so we check if entered values are valid integer numbers. Also, input and output cannot be empty strings. We also check arguments for duplicated options. If any error, an error message is printed and script exits with code $1$. 
+	
+\section{Input Source}
+	As an input we can have a file or a directory. If neither of them is not specified, current working directory is used. If the input is type of directory, we recursively find and analyses files with extension \textbf{.h}. If input is specified via \textbf{--input=file} but is not valid (input file is not readable, does not exists, is a directory, etc\dots), an error message is printed to standard error stream and the script exits with the error error $2$.
+	
+\section{Header Analysis}
+	As we mentioned, our analysis of function definitions and declarations is based on regular expressions. The filtering, parsing and analysing logic is in \textbf{extract\_headers\_for\_file}. At first, we load the content of the file to a string. This string is later filtered. We remove the comments, macros, enum, struct definitions, typedefs, string literals. Later, we process this string line by line - we remove lines which cannot contains function definitions or declarations, this is also done by using regular expressions. We find functions using our specific regular expression via \textbf{preg\_match\_all}. When we find a function, we put its name to list of already analysed functions. If there is only a keyword \textbf{void} in the function parameters list, we recognize this function as a function without any parameters. If we find three dots (\textbf{...}) at the end of function parameters list of the certain function, it means that the function has variable length arguments. If \textbf{--no-duplicates} is set and we find name of current found function in that list, we skip analysis of this function. We also skip analysis if a return type of function contains inline keyword and \textbf{--no-inline} is set. If \textbf{--max-par=n} is set, we skips function which have more than \textbf{n} parameters. We remove whitespaces from return types and parameters using function \textbf{normalize\_spaces} if \textbf{--remove-whitespace} if set. Function parameters are parsed in function \textbf{parse\_params\_list}.
+	
+\section{Output Source}
+	The output of C Header Analysis can be saved to file. If \textbf{--output=file} is not specified, output is printed to standard output stream (stdout). If output is specified but is not valid (output file is not writable, output file is a directory, etc\dots), an error message is printed to standard error stream and the script exits with the error code error $3$.
+	
+\section{Writing to XML}
+	At first, we were manually printing XML elements using \textbf{fwrite} but later we decided to use a \textbf{PHP} library \textbf{XMLWritter} which provides useful APIs above XML I/O operations. Also it provides functions which we used to implement some functionality of this script, namely argument  \textbf{pretty-xml} and we used related XMLWritter's functions \textbf{setIndent} a \textbf{setIndentString}. We define output for \textbf{XMLWritter} using \textbf{openURI}.
+	
+\section{Extensions}
+	We implemented both extensions in this task.
+
+	\subsection{FUN (1.0pt)}
+		To implement this extension, we cannot rely on our basic regular expresion to find functions definitions/declarations so we had to introduce additional regular expressions to analyse more complex functions, which for example return a pointer to a function. Also, we had to change previous logic to parse function parameters since we cannot use comma as delimiter anymore, since as part of this extension, we can have function pointers as parameters - e.g. \textbf{void foo(void (*f)(int a, int b))}. As a solution, we used simple brackets counting in parameters so we were able to determine whether the incoming comma seperates parameters in functions or this comma is part of a function pointer presented in function parameters.
+		
+	\subsection{PAR (1.0pt)}
+	        This extension was slightly easier to implement than FUN, since we had to change only a few things in regular expressions, but later we found potentional issues. When we analyse e.g. function \textbf{void foo(const float)}, we had to change our parsing logic of parameters which checks now if a string, which can be name of argument, does not contains name of some data types in C so we adjusted parsing code according to this information.
+
+\end{document}
