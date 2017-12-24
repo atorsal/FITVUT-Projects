@@ -101,3 +101,7 @@ Projekt - Vykreslovaci retazec a programovanie shaderov (18/18)
 
 1. projekt - IRC Bot so SYSLOG zaznamenavanim (20/20)
 
+**IMS**
+
+1. projekt - Spracovanie zeleza a ocele (20/20)
+
