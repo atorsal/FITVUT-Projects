@@ -1,0 +1,51 @@
+{block title}
+  Hotel Prestíž - Izby
+{/block}
+{block content}
+
+{if $loggedIn}
+{include #tabs}
+
+<button id="new" type="button" class="btn btn-primary btn-block" onclick="redirect({link Room:add})">Pridať izbu</button>
+
+<table id="basetable" class="display" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>Číslo</th>
+                <th>Kapacita</th>
+                <th>Počet miestností</th>
+                <th>Dostupnosť</th>
+                <th>Cena za deň (v eurách)</th>
+                <th>Akcia</th>
+            </tr>
+        </thead>
+        <tbody>
+            {foreach $rooms as $room}
+                   <tr>
+		            	<td>{$room->cislo_izby}</td>
+                        <td>{$room->kapacita}</td>
+                        <td>{$room->pocet_miestnosti}</td>
+                        {if $room->dostupnost == 1}
+		                    <td>áno</td>
+                        {else}
+                            <td>nie</td>
+                        {/if}
+                        <td>{$room->cena}</td>
+               	<td>
+                    {if $room->dostupnost == 0}
+                        <button type="button" class="btn btn-default" onclick="redirect({link Room:view $room->cislo_izby})">Zobraziť</button>
+                    {/if}
+                	<button type="button" class="btn btn-primary" onclick="redirect({link Room:edit $room->cislo_izby})">Upraviť</button>
+                	<button type="button" class="btn btn-danger" onclick="redirect_remove({link Room:delete $room->cislo_izby})">Vymazať</button>
+                </td> 
+            	</tr>
+            {/foreach}
+        </tbody>
+
+      
+    </table>
+
+{else}
+  {include #login}
+{/if}
+{/block}

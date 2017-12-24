@@ -1,0 +1,18 @@
+{block title}
+  Hotel Prestíž - Klienti - Pridať
+{/block}
+{block content}
+<div align="center">
+      {control addForm}
+</div>
+
+<div class="card blurred-card text-center">
+  <div class="card-block">
+    {foreach $flashes as $flash}
+    <div class="alert alert-success">
+       <strong>Úspešne pridané</strong> {$flash->message}
+    </div>
+    {/foreach}
+    <a href="{link Mainpage:Client}" class="btn btn-primary">Návrat do klientov</a>
+  </div>
+{/block}

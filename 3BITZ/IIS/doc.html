@@ -1,0 +1,59 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Projekt IIS</title>
+    <style type="text/css">
+    	table { border-collapse: collapse; }
+    	td, th { border: 1px solid black; padding: 0.3em 0.5em; text-align: left; }
+    	dt { font-weight: bold; margin-top: 0.5em; }
+    </style>
+</head>
+<body>
+
+<h1>Hotel</h1>
+
+<dl>
+	<dt>Autori</dt>
+	<dd>Dávid Bolvanský
+	    <a href="mailto:xbolva00@stud.fit.vutbr.cz">xbolva00@stud.fit.vutbr.cz</a> -
+		rozhranie informačného systému, nasadenie na server
+	</dd>
+	<dd>Martin Marušiak
+	    <a href="mailto:xmarus07@stud.fit.vutbr.cz">xmarus07@stud.fit.vutbr.cz</a> - 
+		databázový systém v mysql, autentifikácia do systému, relácia (session)
+	</dd>
+	<dd>Juraj Ondrej Dúbrava
+	    <a href="mailto:xdubra03@stud.fit.vutbr.cz">xdubra03@stud.fit.vutbr.cz</a> - 
+		administrátorská časť (správa klientov, zamestnacov), testovanie
+	</dd>
+	<dt>URL aplikácie</dt>
+	<dd><a href="http://hotelprestiz.kvalitne.cz/IIS">http://hotelprestiz.kvalitne.cz/IIS</a></dd>
+</dl>
+
+<h2>Užívatelia v systéme pre testovanie</h2>
+
+<table>
+<tr><th>Login</th><th>Heslo</th><th>Rola</th></tr>
+<tr><td>pkral</td><td>kral2p</td><td>Administrátor</td></tr>
+<tr><td>pdula</td><td>dula2p</td><td>Zamestnanec</td></tr>
+<tr><td>kmala</td><td>mala2k</td><td>Klient</td></tr>
+</table>
+
+<h2>Implementácia</h2>
+<p>Pre tvorbu tohto projektu sme sa rozhodli použiť technológie mysql a PHP. Informačný systém je vytvorený pomocou Nette frameworku v2.4 a je postavený na architektúre Model - View - Presenter. Jednotlivé prípady použitia sú implementované v prezentéroch, ktoré sa nachádzajú v hotel/app/model/presenters. Autentifikačný je implementovaný v hotel/app/model/MyAuthenticator.php. Dĺžka relácie je 20 minút, po uplynutí tejto doby dôjde k automatickému odhlaseniu. Heslá sú uložené v base64 kódovaní v databáze. Návrh sme oproti IDS mierne pozmenili v časti použitia generalizácie - špecializácie, povodný návrh s trvalými a dočasne zamestnanými zamestnancami sme nahradili bežnými zamestnancami a zamestnancami s vyššími právami (t.j. správcovia).</p>
+
+<h2>Inštalácia</h2>
+
+<ul>
+<li>Softwarové požadavky: mysql 5.7, PHP 5.6</li>
+<li>Nakopírovať obsah priečinka hotel do root priečinka na serveri</li>
+<li>Inicializácia databáze: spustiť skript hotel.sql v phpMyAdmin</li>
+<li>Komunikácia IS s databázou: nastaviť prístup k databáze v súbore config.local.neon súboru v app/config</li>
+</ul>
+
+</body>
+</html>
+

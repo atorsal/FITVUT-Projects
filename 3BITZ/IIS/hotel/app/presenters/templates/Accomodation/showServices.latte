@@ -1,0 +1,15 @@
+{block title}
+  Hotel Prestíž - Pobyty - Pridať službu
+{/block}
+{block content}
+
+<div class="card blurred-card text-center">
+  <div class="card-block">
+  <div align="center">
+    {foreach $flashes as $flash}
+        <h3>{$flash->message}</h3>
+    {/foreach}
+  </div>
+    <a href="{link Mainpage:Accomodation}" class="btn btn-primary">Návrat do pobytov</a>
+  </div>
+{/block}

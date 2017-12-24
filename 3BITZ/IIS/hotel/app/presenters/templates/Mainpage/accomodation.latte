@@ -1,0 +1,93 @@
+{block title}
+  Hotel Prestíž - Pobyty
+{/block}
+{block content}
+
+{if $loggedIn}
+{include #tabs}
+
+{if $role == "zamestnanec" || $role == "správca"}
+<button type="button" class="btn btn-primary btn-block" onclick="redirect({link Accomodation:add})">Pridať pobyt</button>
+{/if}
+<button type="button" class="btn btn-primary btn-block" onclick="redirect({link Accomodation:create})">Vytvoriť rezerváciu</button>
+
+<table id="basetable" class="display" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>Rezervácia od</th>
+                <th>Rezervácia do</th>
+                <th>Ubytovanie od</th>
+                <th>Ubytovanie do</th>
+                <th>Počet osôb</th>
+                <th>Izba</th>
+                <th>Klient</th>
+                <th>Suma</th>
+                <th>Zľava</th>
+                <th>Vytvoril/a</th>
+                <th>Služby</th>
+                {if $role == "zamestnanec" || $role == "správca"}
+                <th>Akcia</th>
+                {/if}
+            </tr>
+        </thead>
+        <tbody>
+            {foreach $accomodations as $accomodation}
+                   <tr>
+                     {if $accomodation->datum_rezervovania_od == ""}
+                        <td></td>
+                     {else}
+		             <td>{substr($accomodation->datum_rezervovania_od,8,2) . ". " . substr($accomodation->datum_rezervovania_od,5,2) . ". " . substr($accomodation->datum_rezervovania_od,0,4)}</td>
+                     {/if}
+
+                     {if $accomodation->datum_rezervovania_do == ""}
+                        <td></td>
+                     {else}
+		             <td>{substr($accomodation->datum_rezervovania_do,8,2) . ". " . substr($accomodation->datum_rezervovania_do,5,2) . ". " . substr($accomodation->datum_rezervovania_do,0,4)}</td>
+                     {/if}
+
+                     {if $accomodation->datum_ubytovania_od == ""}
+                        <td></td>
+                     {else}
+		             <td>{substr($accomodation->datum_ubytovania_od,8,2) . ". " . substr($accomodation->datum_ubytovania_od,5,2) . ". " . substr($accomodation->datum_ubytovania_od,0,4)}</td>
+                     {/if}
+
+                     {if $accomodation->datum_ubytovania_do == ""}
+                        <td></td>
+                     {else}
+		             <td>{substr($accomodation->datum_ubytovania_do,8,2) . ". " . substr($accomodation->datum_ubytovania_do,5,2) . ". " . substr($accomodation->datum_ubytovania_do,0,4)}</td>
+                     {/if}
+
+                     <td>{$accomodation->pocet_osob}</td>
+                     <td>{$accomodation->cislo_izby}</td>
+                     <td>{$accomodation->meno_klienta} {$accomodation->priezvisko_klienta}</td>
+                     <td>{$accomodation->suma_platby}</td>
+                     <td>{$accomodation->nazov_zlavy}</td>
+                     <td>{$accomodation->meno_zamestnanca} {$accomodation->priezvisko_zamestnanca}</td>
+               	<td>
+                    <button type="button" class="btn btn-info" onclick="redirect({link Accomodation:showServices $accomodation->id_pobytu})">Zobraziť</button>
+                	<button type="button" class="btn btn-primary" onclick="redirect({link Accomodation:addService $accomodation->id_pobytu})">Pridať</button>
+                    <button type="button" class="btn btn-danger" onclick="redirect({link Accomodation:deleteService $accomodation->id_pobytu})">Vymazať</button>
+                </td>
+                {if $role == "zamestnanec" || $role == "správca"}
+                <td>
+                    {if $accomodation->datum_ubytovania_od == ""}
+                        <button type="button" class="btn btn-default" onclick="redirect({link Accomodation:accomodate $accomodation->id_pobytu})">Ubytovať</button>
+                    {/if}
+                	<button type="button" class="btn btn-primary" onclick="redirect({link Accomodation:edit $accomodation->id_pobytu})">Upraviť</button>
+                    <button type="button" class="btn btn-danger" onclick="redirect_remove({link Accomodation:delete $accomodation->id_pobytu})">Vymazať</button>
+                    {if $accomodation->datum_ubytovania_od != "" && $accomodation->datum_ubytovania_do != "" && $accomodation->cislo_izby != "" && $accomodation->suma_platby == 0}
+                        <button type="button" class="btn btn-success" onclick="redirect({link Accomodation:pay $accomodation->id_pobytu})">Zaplatiť</button>
+                    {/if}
+                    </td>
+                {/if}
+            	</tr>
+            {/foreach}
+        </tbody>
+
+      
+    </table>
+
+{else}
+  {include #login}
+{/if}
+{/block}

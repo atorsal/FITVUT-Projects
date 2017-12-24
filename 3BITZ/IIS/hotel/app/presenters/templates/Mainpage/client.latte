@@ -1,0 +1,58 @@
+{block title}
+  Hotel Prestíž - Klienti
+{/block}
+{block content}
+
+{if $loggedIn}
+{include #tabs}
+
+<button id="new" type="button" class="btn btn-primary btn-block" onclick="redirect({link Client:add})">Pridať klienta</button>
+
+<table id="basetable" class="display" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>Meno</th>
+                <th>Priezvisko</th>
+                <th>Mesto</th>
+                <th>Ulica</th>
+                <th>Číslo domu</th>
+                <th>Štát</th>
+                <th>PSČ</th>
+                <th>Rodné číslo</th>
+                <th>Telefónne číslo</th>
+                <th>E-mailová adresa</th>
+                <th>Prihlasovacie meno</th>
+                <th>Heslo</th>
+                <th>Akcia</th>
+            </tr>
+        </thead>
+        <tbody>
+            {foreach $clients as $client}
+                   <tr>
+		            	      <td>{$client->meno}</td>
+                        <td>{$client->priezvisko}</td>
+                        <td>{$client->mesto}</td>
+                        <td>{$client->ulica}</td>
+                        <td>{$client->cislo_domu}</td>
+                        <td>{$client->stat}</td>
+                        <td>{$client->psc}</td>
+                        <td>{$client->rodne_cislo}</td>
+                        <td>{$client->telefonne_cislo}</td>
+                        <td>{$client->email}</td>
+                        <td>{$client->login}</td>
+                        <td>{base64_decode($client->heslo)}</td>
+               	<td>
+                	<button type="button" class="btn btn-primary" onclick="redirect({link Client:edit $client->id_klienta})">Upraviť</button>
+                    <button type="button" class="btn btn-danger" onclick="redirect_remove({link Client:delete $client->id_klienta})">Vymazať</button>
+                </td> 
+            	</tr>
+            {/foreach}
+        </tbody>
+
+      
+    </table>
+
+{else}
+  {include #login}
+{/if}
+{/block}

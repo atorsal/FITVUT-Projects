@@ -1,0 +1,39 @@
+{block title}
+  Hotel Prestíž - IS - Obsadenosť
+{/block}
+{block content}
+<div class="card blurred-card">
+  <div class="card-block text-center card-inverse" style="background-color: #333; border-color: #333;">
+    <h2 class="card-title card-inverse">Prehľad o voľných apartmánoch hotela pre deň: {$date}</h2>
+  </div>
+</div>
+
+<div class="card blurred-card text-center">
+    <div class="card-block">
+      <h4 class="card-title">Dvojizbové ({$dvojizbove_volne} / {$dvojizbove_vsetky})</h4>
+      <div class="progress">
+      <div class="progress-bar" role="progressbar" style="width: {intval($dvojizbove_volne * 100 / $dvojizbove_vsetky)}%; height: 40px;" aria-valuenow="{$dvojizbove_volne * 100 / $dvojizbove_vsetky}" aria-valuemin="0" aria-valuemax="100"></div>
+      </div>
+    </div>
+  </div>
+  <div class="card blurred-card text-center">
+    <div class="card-block">
+      <h4 class="card-title">Trojizbové ({$trojizbove_volne} / {$trojizbove_vsetky})</h4>
+      <div class="progress">
+        <div class="progress-bar" role="progressbar" style="width: {intval($trojizbove_volne * 100 / $trojizbove_vsetky)}%; height: 40px;" aria-valuenow="{$trojizbove_volne * 100 / $trojizbove_vsetky}" aria-valuemin="0" aria-valuemax="100"></div>
+      </div>
+    </div>
+  </div>
+  <div class="card blurred-card text-center">
+    <div class="card-block">
+      <h4 class="card-title">Štvorizbové ({$stvorizbove_volne} / {$stvorizbove_vsetky})</h4>
+      <div class="progress">
+        <div class="progress-bar" role="progressbar" style="width: {intval($stvorizbove_volne * 100 / $stvorizbove_vsetky)}%; height: 40px;" aria-valuenow="{$stvorizbove_volne * 100 / $stvorizbove_vsetky}" aria-valuemin="0" aria-valuemax="100"></div>
+      </div>
+    </div>
+</div>
+
+<div align="center">
+<a href="{link Homepage:default}" class="btn btn-primary">Návrat na hlavnú stránku</a>
+</div>
+{/block}

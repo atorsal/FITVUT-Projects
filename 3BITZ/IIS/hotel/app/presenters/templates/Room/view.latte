@@ -1,0 +1,15 @@
+{block title}
+  Hotel Prestíž - Služby - Zobraziť
+{/block}
+{block content}
+
+  <div class="card blurred-card text-center">
+  <div class="card-block">
+    {foreach $flashes as $flash}
+    <div class="alert alert-success">
+       {$flash->message}
+    </div>
+    {/foreach}
+    <a href="{link Mainpage:Room}" class="btn btn-primary">Návrat do izieb</a>
+  </div>
+{/block}

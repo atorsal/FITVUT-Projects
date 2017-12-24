@@ -1,0 +1,49 @@
+{block title}
+  Hotel Prestíž - Zľavy
+{/block}
+{block content}
+
+{if $loggedIn}
+{include #tabs}
+
+<button id="new" type="button" class="btn btn-primary btn-block" onclick="redirect({link Discount:add})">Pridať zľavu</button>
+
+<table id="basetable" class="display" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>Názov</th>
+                <th>Rezervačná</th>
+                <th>Sezónna</th>
+                <th>Akcia</th>
+            </tr>
+        </thead>
+        <tbody>
+            {foreach $discounts as $discount}
+                   <tr>
+		            	      <td>{$discount->nazov}</td>
+                        {if $discount->rezervacna_zlava == 1}
+		                        <td>áno</td>
+                        {else}
+                            <td>nie</td>
+                        {/if}
+                        
+                        {if $discount->sezonna_zlava == 1}
+		                        <td>áno</td>
+                        {else}
+                            <td>nie</td>
+                        {/if}
+               	<td>
+                	<button type="button" class="btn btn-primary" onclick="redirect({link Discount:edit $discount->id_zlavy})">Upraviť</button>
+                	<button type="button" class="btn btn-danger" onclick="redirect_remove({link Discount:delete $discount->id_zlavy})">Vymazať</button>
+                </td> 
+            	</tr>
+            {/foreach}
+        </tbody>
+
+      
+    </table>
+
+{else}
+  {include #login}
+{/if}
+{/block}

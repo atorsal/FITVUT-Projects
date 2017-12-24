@@ -1,0 +1,24 @@
+{block title}
+  Hotel Prestíž - Pobyty - Zaplatiť
+{/block}
+{block content}
+<div align="center">
+      {control payForm}
+</div>
+
+<div class="card blurred-card text-center">
+  <div class="card-block">
+    {foreach $flashes as $flash}
+    {if $flash->type == "ok"}
+    <div class="alert alert-success">
+       <strong>Úspešne zaplatené</strong> {$flash->message}
+    </div>
+    {else}
+    <div class="alert alert-success">
+          {$flash->message}
+        </div>
+     {/if}
+    {/foreach}
+    <a href="{link Mainpage:Accomodation}" class="btn btn-primary">Návrat do pobytov</a>
+  </div>
+{/block}

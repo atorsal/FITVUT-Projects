@@ -1,0 +1,48 @@
+{block title}
+  Hotel Prestíž - Služby
+{/block}
+{block content}
+
+{if $loggedIn}
+{include #tabs}
+
+<button id="new" type="button" class="btn btn-primary btn-block" onclick="redirect({link Service:add})">Pridať službu</button>
+
+<table id="basetable" class="display" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>Názov</th>
+                <th>Typ</th>
+                <th>Cena (v eurách)</th>
+                <th>Akcia</th>
+            </tr>
+        </thead>
+        <tbody>
+            {foreach $services as $service}
+                   <tr>
+                        <td>{$service->nazov}</td>
+                        {if $service->typ == 1}
+		                    <td>šesťhodinová</td>
+                        {elseif $service->typ == 2}
+                            <td>dvojhodinová</td>
+                        {elseif $service->typ == 3}
+                            <td>osemhodinová</td>
+                        {elseif $service->typ == 4}
+                            <td>celodenná</td>
+                        {/if}
+		                <td>{$service->cena}</td>
+               	<td>
+                	<button type="button" class="btn btn-primary" onclick="redirect({link Service:edit $service->id_sluzby})">Upraviť</button>
+                	<button type="button" class="btn btn-danger" onclick="redirect_remove({link Service:delete $service->id_sluzby})">Vymazať</button>
+                </td> 
+            	</tr>
+            {/foreach}
+        </tbody>
+
+      
+    </table>
+
+{else}
+  {include #login}
+{/if}
+{/block}

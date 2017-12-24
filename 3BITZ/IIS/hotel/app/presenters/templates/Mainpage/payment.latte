@@ -1,0 +1,48 @@
+{block title}
+  Hotel Prestíž - Platby
+{/block}
+{block content}
+
+{if $loggedIn}
+{include #tabs}
+
+<table id="basetable" class="display" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>Suma v eurách</th>
+                <th>Dátum</th>
+                <th>Spôsob platby</th>
+                <th>Číslo účtu</th>
+                <th>Zaplatil/a</th>
+                <th>Zaevidoval/a</th>
+                <th>Akcia</th>
+            </tr>
+        </thead>
+        <tbody>
+            {foreach $payments as $payment}
+                 <tr>
+		             <td>{$payment->suma}</td>
+                 <td>{substr($payment->datum_platby,8,2) . ". " . substr($payment->datum_platby,5,2) . ". " . substr($payment->datum_platby,0,4)}</td>
+                 {if $payment->sposob_platby == 1}
+                    <td>prevodom z účtu</td>
+                 {elseif $payment->sposob_platby == 2}
+                    <td>v hotovosti</td>
+                  {/if}
+                 <td>{$payment->cislo_uctu}</td>
+                 <td>{$payment->meno_klienta} {$payment->priezvisko_klienta}</td>
+
+                 <td>{$payment->meno_zamestnanca} {$payment->priezvisko_zamestnanca}</td>
+                 <td>
+                	<button type="button" class="btn btn-primary" onclick="redirect({link Payment:edit $payment->id_platby})">Upraviť</button>
+                </td> 
+            	</tr>
+            {/foreach}
+        </tbody>
+
+      
+    </table>
+
+{else}
+  {include #login}
+{/if}
+{/block}

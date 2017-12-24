@@ -1,0 +1,18 @@
+{block title}
+  Hotel Prestíž - Zľavy - Upraviť
+{/block}
+{block content}
+<div align="center">
+      {control editForm}
+</div>
+
+<div class="card blurred-card text-center">
+  <div class="card-block">
+    {foreach $flashes as $flash}
+    <div class="alert alert-success">
+       <strong>Úspešne upravené</strong> {$flash->message}
+    </div>
+    {/foreach}
+    <a href="{link Mainpage:Discount}" class="btn btn-primary">Návrat do zliav</a>
+  </div>
+{/block}

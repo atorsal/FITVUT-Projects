@@ -1,0 +1,60 @@
+{block title}
+  Hotel Prestíž - Zamestnanci
+{/block}
+{block content}
+
+{if $loggedIn}
+{include #tabs}
+
+<button id="new" type="button" class="btn btn-primary btn-block" onclick="redirect({link Employee:add})">Pridať zamestnanca</button>
+
+<table id="basetable" class="display" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>Meno</th>
+                <th>Priezvisko</th>
+                <th>Titul</th>
+                <th>Mesto</th>
+                <th>Ulica</th>
+                <th>Číslo domu</th>
+                <th>PSČ</th>
+                <th>Rodné číslo</th>
+                <th>Telefónne číslo</th>
+                <th>E-mailová adresa</th>
+                <th>Číslo účtu</th>
+                <th>Prihlasovacie meno</th>
+                <th>Heslo</th>
+                <th>Akcia</th>
+            </tr>
+        </thead>
+        <tbody>
+            {foreach $employees as $employee}
+                   <tr>
+		            	      <td>{$employee->meno}</td>
+                        <td>{$employee->priezvisko}</td>
+                        <td>{$employee->titul}</td>
+                        <td>{$employee->mesto}</td>
+                        <td>{$employee->ulica}</td>
+                        <td>{$employee->cislo_domu}</td>
+                        <td>{$employee->psc}</td>
+                        <td>{$employee->rodne_cislo}</td>
+                        <td>{$employee->telefonne_cislo}</td>
+                        <td>{$employee->email}</td>
+                        <td>{$employee->cislo_uctu}</td>
+                        <td>{$employee->login}</td>
+                        <td>{base64_decode($employee->heslo)}</td>
+               	<td>
+                	<button type="button" class="btn btn-primary" onclick="redirect({link Employee:edit $employee->id_zamestnanca})">Upraviť</button>
+                	<button type="button" class="btn btn-danger" onclick="redirect_remove({link Employee:delete $employee->id_zamestnanca})">Vymazať</button>
+                </td> 
+            	</tr>
+            {/foreach}
+        </tbody>
+
+      
+    </table>
+
+{else}
+  {include #login}
+{/if}
+{/block}

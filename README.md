@@ -105,3 +105,8 @@ Projekt - Vykreslovaci retazec a programovanie shaderov (18/18)
 
 1. projekt - Spracovanie zeleza a ocele (20/20)
 
+**IIS**
+
+1. projekt - Informacny system pre hotel (30/30)
+
+

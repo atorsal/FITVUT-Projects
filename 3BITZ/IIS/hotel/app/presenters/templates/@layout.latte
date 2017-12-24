@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="description" content="Nette Framework Static Web">
+    <meta name="robots" content="{$robots}" n:ifset="$robots">
+
+    <title>{include #title}</title>
+
+    <link rel="shortcut icon" href="{$basePath}/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="{$basePath}/style.css">
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+
+    <link href="http://datatables.net/download/build/nightly/jquery.dataTables.css" rel="stylesheet" type="text/css" />
+    <script src="http://datatables.net/download/build/nightly/jquery.dataTables.js"></script>
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+</head>
+
+<body>
+<nav class="navbar navbar-toggleable navbar-light navbar-inverse bg-inverse">
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#user-dropdown-menu" aria-controls="user-dropdown-menu" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <a class="navbar-brand" href="#">Hotel Prestíž</a>
+  {if $loggedIn}
+  <div class="collapse navbar-collapse justify-content-end" id="user-dropdown-menu">
+    <ul class="navbar-nav">
+      <a class="navbar-brand nav-link nav-link-white dropdown-toggle" id="user-dropdown-menu-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        {$name} ({$role})
+        </a>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="user-dropdown-menu-link">
+          <a class="dropdown-item" href="{link Homepage:logout}">Odhlasiť</a>
+          <a class="dropdown-item" href="{link Homepage:default}">Hlavná stránka</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+  {/if}
+</nav>
+{define tabs}
+<ul class="nav nav-tabs nav-fill justify-content-center"">
+
+{if $role == "klient"}
+<li class="nav-item">
+    <a class="nav-link main-tab" href="{link Accomodation}">Pobyty</a>
+  </li>
+  </li>
+{/if}
+
+{if $role == "zamestnanec" || $role == "správca"}
+<li class="nav-item">
+    <a class="nav-link main-tab" href="{link Accomodation}">Pobyty</a>
+  </li>
+	<li class="nav-item">
+    <a class="nav-link main-tab" href="{link Payment}">Platby</a>
+  </li>
+<li class="nav-item">
+    <a class="nav-link main-tab" href="{link Room}">Izby</a>
+  </li>
+  	<li class="nav-item">
+    <a class="nav-link main-tab" href="{link Discount}">Zľavy</a>
+  </li>
+	<li class="nav-item">
+    <a class="nav-link main-tab" href="{link Service}">Služby</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link main-tab" href="{link Client}">Klienti</a>
+  </li>
+  {/if}
+
+{if $role == "správca"}
+    <li class="nav-item">
+      <a class="nav-link main-tab" href="{link Employee}">Zamestnanci</a>
+    </li>
+  {/if}
+</ul>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    var table = $('#basetable').DataTable({
+        "language": {
+                "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Slovak.json"
+            }
+    });
+} );
+
+function redirect(page) {
+    location.href = page;
+}
+
+function redirect_remove(page) {
+    var remove = confirm("Ste si istý, že chcete vymazať túto položku?");
+    if (remove) {
+      location.href = page;
+    }
+}
+
+</script>
+{/define}
+
+{define login}
+<div class="card blurred-card text-center">
+  <div class="card-block">
+    <h2 class="card-title">Zakázaný vstup</h2>
+    <p class="card-text">Prihlásiť sa pre vstup do informačného systému.</p>
+    <a href="{link Mainpage:home}" class="btn btn-primary">Prihlásiť</a>
+  </div>
+</div>
+{/define}
+
+{include #content}
+</body>
+</html>

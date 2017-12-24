@@ -1,0 +1,9 @@
+{
+    "require": {
+        "nella/forms-datetime": "^2.4",
+        "nextras/forms": "^2.0",
+        "radekdostal/nette-datetimepicker": "^2.5",
+        "ipub/form-datetime": "@dev",
+        "voda/date-input": "^1.1"
+    }
+}

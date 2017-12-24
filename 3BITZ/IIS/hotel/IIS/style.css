@@ -1,0 +1,19 @@
+body {
+    background-size:100%;
+    background-repeat: no-repeat;
+    width: 100%;
+}
+
+.blurred-card {
+   opacity: 0.8;
+}
+
+.main-tab {
+	background-color: #562A72; 
+	opacity: 0.8;
+	color:white;
+}
+
+ul.nav > li > a:visited {
+	color: white;
+}

@@ -1,0 +1,24 @@
+{block title}
+  Hotel Prestíž - Služby - Pridať
+{/block}
+{block content}
+<div align="center">
+      {control addForm}
+</div>
+
+<div class="card blurred-card text-center">
+  <div class="card-block">
+    {foreach $flashes as $flash}
+    {if $flash->type == "ok"}
+    <div class="alert alert-success">
+       <strong>Úspešne pridané</strong> {$flash->message}
+    </div>
+    {else}
+    <div class="alert alert-danger">
+       <strong>Nie je možné pridať</strong> {$flash->message}
+    </div>
+    {/if}
+    {/foreach}
+    <a href="{link Mainpage:Room}" class="btn btn-primary">Návrat do izieb</a>
+  </div>
+{/block}

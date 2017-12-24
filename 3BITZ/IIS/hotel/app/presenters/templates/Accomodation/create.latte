@@ -1,0 +1,25 @@
+{block title}
+  Hotel Prestíž - Pobyty - Rezervovať
+{/block}
+{block content}
+<div align="center">
+      {control createForm}
+</div>
+
+<div class="card blurred-card text-center">
+  <div class="card-block">
+    {foreach $flashes as $flash}
+    {if $flash->type == "ok"}
+    <div class="alert alert-success">
+       <strong>Úspešne rezervované</strong> {$flash->message}
+    </div>
+    {else}
+    <div class="alert alert-danger">
+       <strong>Nie je možné rezervovať</strong> {$flash->message}
+    </div>
+    {/if}
+    {/foreach}
+    <a href="{link Client:Add}" class="btn btn-primary">Pridať klienta</a>
+    <a href="{link Mainpage:Accomodation}" class="btn btn-primary">Návrat do pobytov</a>
+  </div>
+{/block}

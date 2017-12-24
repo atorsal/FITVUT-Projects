@@ -1,0 +1,61 @@
+{block title}
+  Hotel Prestíž - IS
+{/block}
+{block content}
+
+<script>
+function date_handler(e) {
+  location.href = {link Homepage:refresh} + "/" + e.target.value;
+}
+</script>
+
+
+{if $loggedIn}
+  <div class="card blurred-card text-center">
+  <div class="card-block">
+    <h2 class="card-title">Vstúpiť do informačného systému</h2>
+    <p class="card-text">Vstúpiť do informačného systému ako klient/zamestnanec/správca.</p>
+    <a href="{link Homepage:manage}" class="btn btn-primary">Vstúpiť</a>
+  </div>
+</div>
+
+<div class="card blurred-card">
+  <div class="card-block text-center card-inverse" style="background-color: #333; border-color: #333;">
+    <h2 class="card-title card-inverse">Prehľad o obsadení apartmánov hotela</h2>
+    <form action="{link Homepage:default}">
+      <input type="date" onchange="date_handler(event);" value="{php echo date('Y-m-d');}">
+    </form>
+  </div>
+</div>
+
+{else}
+
+<div class="card blurred-card text-center">
+  <div class="card-block">
+    <h2 class="card-title">Vytvoriť rezerváciu</h2>
+    <p class="card-text">Vytvoriť rezerváciu ako nový klient.</p>
+    <a href="{link Accomodation:createHost}" class="btn btn-primary">Vytvoriť rezerváciu</a>
+  </div>
+</div>
+
+<div class="card blurred-card text-center">
+  <div class="card-block">
+    <h2 class="card-title">Prihlásenie do informačného systému</h2>
+    <p class="card-text">Prihlásiť sa do informačného systému ako klient/zamestnanec/správca.</p>
+    <div align="center">
+      {control loginForm}
+    </div>
+  </div>
+</div>
+
+<div class="card blurred-card">
+  <div class="card-block text-center card-inverse" style="background-color: #333; border-color: #333;">
+    <h2 class="card-title card-inverse">Prehľad o obsadení apartmánov hotela</h2>
+    <form action="{link Homepage:default}">
+      <input type="date" onchange="date_handler(event);">
+    </form>
+  </div>
+</div>
+
+{/if}
+{/block}
