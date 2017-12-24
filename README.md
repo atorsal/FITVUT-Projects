@@ -93,3 +93,11 @@ Cvicenia (18/18)
 
 Projekt - Vykreslovaci retazec a programovanie shaderov (18/18)
 
+## Druhy rocnik
+
+#### Zimny semester
+
+**ISA**
+
+1. projekt - IRC Bot so SYSLOG zaznamenavanim (20/20)
+

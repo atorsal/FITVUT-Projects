@@ -1,0 +1,42 @@
+Program:
+IRC bot so Syslog zaznamenavaním
+
+Autor:
+Dávid Bolvanský (xbolva00)
+
+Popis:
+Jednoduchý IRC bot s podporou zaznamenávania IRC správ obsahujúcich zadané kľúčové slová na Syslog server. 
+Poskytuje funkcie na výpis dátumu a zaslanie správ používateľovi. Ak je používateľ na kanáli, odošlú sa mu tieto správy ihneď. 
+Ak nie je na kanáli - správy mu IRC bot odošle po jeho opätovnom pripojení.
+
+
+Použitie:
+isabot HOST[:PORT] CHANNELS [-s SYSLOG_SERVER] [-l HIGHLIGHT] [-h|--help]
+
+HOST je názov/IP adresa servera (napr. irc.freenode.net)
+PORT je číslo portu (predvolený port je 6667)
+CHANNELS obsahuje jeden alebo viac kanálov (začínajú znakom # alebo &, oddelené sú čiarkou)
+-s SYSLOG_SERVER je IP adresa Syslog servera
+-l HIGHLIGHT je zoznam kľúčových slov oddelených čiarkou (napr. ip,tcp,udp,isa)
+-h|--help zobrazenie informácii o programe a o prepínačoch
+
+
+Príklady spustenia:
+isabot irc.freenode.net:6667 "#ISAChannel,#ISA" -l "isa,ims"
+isabot irc.freenode.net "#ISA" -l "isa" -s 147.229.216.14
+isabot irc.freenode.net \#ISA -l "isa,ims,imp,itu,iis"
+
+Odovzdané súbory:
+isabot.cc
+isabot.h
+irc_bot.cc
+irc_bot.h
+irc_command.cc
+irc_command.h
+syslog_server.cc
+syslog_server.h
+utils.cc
+utils.h
+Makefile
+README
+manual.pdf
