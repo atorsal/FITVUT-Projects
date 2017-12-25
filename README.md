@@ -93,7 +93,7 @@ Cvicenia (18/18)
 
 Projekt - Vykreslovaci retazec a programovanie shaderov (18/18)
 
-## Druhy rocnik
+## Treti rocnik
 
 #### Zimny semester
 
@@ -108,5 +108,9 @@ Projekt - Vykreslovaci retazec a programovanie shaderov (18/18)
 **IIS**
 
 1. projekt - Informacny system pre hotel (30/30)
+
+**ITU**
+
+1. projekt - Time Tracker (53/55)
 
 
