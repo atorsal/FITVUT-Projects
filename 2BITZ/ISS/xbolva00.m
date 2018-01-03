@@ -35,7 +35,7 @@ plot (f,abs(H));
 xlabel('f [Hz]');
 ylabel('|H(f)|')
 
-% 5
+% 6
 sf = filter(b,a, s);
 f = (0:N/2-1)/N * Fs;
 m = abs(fft(sf));
