@@ -23,6 +23,9 @@ void htab_clear(htab_t * t)
 				free(item);
 				item = next_item;
 			}
+
+			t->list[i] = NULL; // if not, free causes abort (invalid pointer)
+                               // in unit tests after double clear
 		}
 	}
 

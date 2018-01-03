@@ -99,18 +99,18 @@ Projekt - Vykreslovaci retazec a programovanie shaderov (18/18)
 
 **ISA**
 
-1. projekt - IRC Bot so SYSLOG zaznamenavanim (20/20)
+IRC Bot so SYSLOG zaznamenavanim (20/20)
 
 **IMS**
 
-1. projekt - Spracovanie zeleza a ocele (20/20)
+Spracovanie zeleza a ocele (20/20)
 
 **IIS**
 
-1. projekt - Informacny system pre hotel (30/30)
+Informacny system pre hotel (30/30)
 
 **ITU**
 
-1. projekt - Time Tracker (53/55)
+Time Tracker (53/55)
 
 
