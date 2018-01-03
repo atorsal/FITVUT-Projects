@@ -112,5 +112,10 @@ Informacny system pre hotel (30/30)
 **ITU**
 
 Time Tracker (53/55)
+Cvicenia (25/25)
 
+**IMP**
+
+Zabezpečení dat pomocí 16/32-bit. kódu CRC (12/14)
+Cvicenia (16/16)
 
