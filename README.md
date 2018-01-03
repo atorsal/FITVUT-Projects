@@ -9,6 +9,7 @@
 1. projekt - Praca s textom (5/5)
 2. projekt - Iteracne vypocty (11/7, +4 bonus za bisekciu)
 3. projekt - Jednoducha zhlukovana analyza (9.1/10)
+
 Dokumentacia zdrojoveho kodu (3. projektu) (4/4)
 
 **IEL**
@@ -112,10 +113,12 @@ Informacny system pre hotel (30/30)
 **ITU**
 
 Time Tracker (53/55)
+
 Cvicenia (25/25)
 
 **IMP**
 
 Zabezpečení dat pomocí 16/32-bit. kódu CRC (12/14)
+
 Cvicenia (16/16)
 
