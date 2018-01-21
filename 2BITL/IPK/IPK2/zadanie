@@ -1,0 +1,47 @@
+
+Společná část popisu:
+Navrhněte a vytvořte komunikující aplikaci s pomocí BSD soketů dle vybraného zadání. Projekt odevzdejte zabalený v archívu tar.gz. Součástí bude kompletní zdrojový kód, funkční Makefile a další soubory vyžadované konkrétním zadáním.
+Popis varianty:
+Update: referenční server je dostupný na http://www.fit.vutbr.cz/~ifrankova/ipk.html
+
+
+Cílem projektu je vytvořit skupinového chatovacího klienta v programovacím jazyce C/C++. Klient bude mít za úkol připojit se na server a čekat na vstup z terminálu. Uživatel napíše zprávu a po stisku tlačítka Enter se zpráva odešle. Klient zároveň musí zvládnout přijímat zprávy od serveru a vypsat je na standardní výstup.
+Počet zpráv, které může uživatel odeslat/přijmout, je neomezený.
+
+Program se ukončí po obdržení signálu SIGINT.
+
+Spuštění programu a parametry
+./chat_client -i IP_address -u username
+
+-i IP_address IP adresa chatovacího serveru
+-u username jméno uživatele
+
+Oba parametry jsou povinné. Klient bude se serverem komunikovat s využitím protokolu TCP a bude se vždy připojovat na port 21011.
+
+Formát zpráv
+Po spuštění program automaticky odešle zprávu "username logged in" a analogicky při ukončení spojení odešle "username logged out".
+Každá další odeslaná i přijatá zpráva bude začínat uživatelským jménem, dvojtečkou a mezerou, po které bude následovat samotné tělo zprávy a nový řádek (\r\n).
+
+Příklad odeslání zprávy
+./chat_client -i 192.168.1.100 -u Gary
+Hello Everyone[Enter]
+
+Uživatelský vstup je Hello Everyone a program by měl odeslat zprávu
+Gary: Hello Everyone\r\n
+
+Zprávy přijaté od serveru program pouze vypíše na stdout.
+
+Příklad běhu programu
+./chat_client -i 192.168.1.100 -u Gary
+Hello Everyone[Enter]        <--- odeslaná zpráva
+Kevin: Hi Gary               <--- přijatá zpráva
+Bob logged in
+Bob: Testing connection
+Your connection seems ok, Bob[Enter]     <--- odeslaná zpráva
+
+Dokumentace
+V dokumentaci popište implementaci programu a soubor pojmenujte ipk_chat.pdf. Případná omezení programu uveďte v README. Pokud jste implementovali a otestovali všechny body ze zadání, README nemusíte odevzdávat.
+
+Poznámky k implementaci
+při vytváření programu je povoleno použít hlavičkové soubory pro práci se sokety a další obvyklé funkce používané v síťovém prostředí (jako je netinet/*, sys/*, arpa/* apod.), knihovnu pro práci s vlákny (pthread), signály, časem, stejně jako standardní knihovnu jazyka C (varianty ISO/ANSI i POSIX), C++ a STL
+dotazy směřujte především do fóra, pomůžete tím i spolužákům
